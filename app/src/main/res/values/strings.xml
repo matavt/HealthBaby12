@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Health Baby 12</string>
+    <string name="Sign_in_button">Sign in wiht Google</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_out">Sign Out from Google</string>
+    <string name="submit">submit</string>
+    <string name="tb_logout">logout</string>
+</resources>
