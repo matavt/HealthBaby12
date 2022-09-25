@@ -17,34 +17,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+import java.util.Objects;
+
 public class MainMenu extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    public TextView name,email,apiReturn;
-    Button signOut;
-    Button submit;
+    TextView welcome;
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Health Baby");
+        welcome = findViewById(R.id.name);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         gsc = GoogleSignIn.getClient(this,gso);
-        name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
-
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account !=null) {
             String accountName = account.getDisplayName();
-            String accountEmail = account.getEmail();
-            name.setText(accountName);
-            email.setText(accountEmail);
+            welcome.setText("Welcome: " + accountName);
         }
     }
 

@@ -7,4 +7,7 @@
     <string name="sign_out">Sign Out from Google</string>
     <string name="submit">submit</string>
     <string name="tb_logout">logout</string>
+    <string name="tb_home">Home</string>
+    <string name="tb_sync">Sync Data</string>
+    <string name="tb_records">Records</string>
 </resources>

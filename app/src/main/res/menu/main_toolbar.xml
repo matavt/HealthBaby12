@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/ab_home"
+        android:title="@string/tb_home"
+        android:icon="@drawable/ic_home_foreground"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ab_records"
+        android:title="@string/tb_records"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/ab_sync"
+        android:title="@string/tb_sync"
+        app:showAsAction="collapseActionView" />
+
     <item
         android:id="@+id/ab_logout"
         android:title="@string/tb_logout"

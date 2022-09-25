@@ -15,35 +15,18 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/welcome"
-        android:text="@string/welcome"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="36sp"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name"
         android:text="@string/name"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/welcome"
-        android:textSize="36sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:text="@string/email"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/name"
-        android:textSize="36sp"/>
-
+        android:layout_below="@id/main_toolbar"
+        android:background="@color/teal_200"
+        android:textSize="36sp"
+        android:textAlignment="center"/>
 
 </RelativeLayout>
 
