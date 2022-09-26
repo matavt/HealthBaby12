@@ -10,4 +10,12 @@
     <string name="tb_home">Home</string>
     <string name="tb_sync">Sync Data</string>
     <string name="tb_records">Records</string>
+    <string name="home_menu">Home Menu</string>
+    <string name="fragHeightWeight">Record Child\'s Height and Weight</string>
+    <string name="fragActivity">Record An Actitity</string>
+    <string name="fragMilestone">Record a Milestone</string>
+    <string name="fragReviewRecord">Review Records</string>
+    <string name="fragLinks">Useful Links and Information</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

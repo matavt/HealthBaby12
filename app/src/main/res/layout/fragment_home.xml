@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    android:layout_gravity="center">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/fragHomeTopText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_menu"
+        android:textAlignment="center"
+        android:textSize="36sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragHomeWeightHeight"
+        android:text="@string/fragHeightWeight"
+        android:layout_below="@id/fragHomeTopText"
+        android:layout_marginTop="36sp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragActivity"
+        android:text="@string/fragActivity"
+        android:layout_below="@id/fragHomeWeightHeight"
+        android:layout_marginTop="36sp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragRecordMilestone"
+        android:text="@string/fragMilestone"
+        android:layout_below="@id/fragActivity"
+        android:layout_marginTop="36sp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragReviewRecord"
+        android:text="@string/fragReviewRecord"
+        android:layout_below="@id/fragRecordMilestone"
+        android:layout_marginTop="36sp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragLinks"
+        android:text="@string/fragLinks"
+        android:layout_below="@id/fragReviewRecord"
+        android:layout_marginTop="36sp"
+        />
+
+</RelativeLayout>

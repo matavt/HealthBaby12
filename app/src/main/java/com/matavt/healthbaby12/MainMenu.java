@@ -2,6 +2,8 @@ package com.matavt.healthbaby12;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,6 +26,8 @@ public class MainMenu extends AppCompatActivity {
     GoogleSignInClient gsc;
     TextView welcome;
     Toolbar toolbar;
+    FragmentManager fragMan;
+    FragmentTransaction fragTran;
 
 
     @Override
@@ -45,6 +49,8 @@ public class MainMenu extends AppCompatActivity {
             String accountName = account.getDisplayName();
             welcome.setText("Welcome: " + accountName);
         }
+
+        loadHomeMenu();
     }
 
 //    add the custom toolbar to the app bar
@@ -61,6 +67,12 @@ public class MainMenu extends AppCompatActivity {
             case R.id.ab_logout:
                 signOutMethod();
                 return true;
+            case R.id.ab_home:
+                loadHomeMenu();
+            case R.id.ab_records:
+                loadRecords();
+            case R.id.ab_sync:
+                loadSync();
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -72,5 +84,20 @@ public class MainMenu extends AppCompatActivity {
             finish();
             startActivity(new Intent(MainMenu.this,GoogleSignin.class));
         });
+    }
+
+    void loadHomeMenu(){
+        fragMan = getSupportFragmentManager();
+        fragTran = fragMan.beginTransaction();
+        fragTran.replace(R.id.fragmentFrame, new Home()).setReorderingAllowed(true);
+        fragTran.commit();
+    }
+
+    void loadRecords(){
+        //to be implemented
+    }
+
+    void loadSync(){
+        //to be implemented
     }
 }
