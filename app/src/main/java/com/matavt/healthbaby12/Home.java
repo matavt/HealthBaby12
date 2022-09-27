@@ -36,19 +36,11 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 callFragment(new HeightWeight());
-//                loadWeightHeight();
             }
         });
 
         return view;
     }
-
-//    void loadWeightHeight(){
-//        fragMan = getParentFragmentManager();
-//        fragTran = fragMan.beginTransaction();
-//        fragTran.replace(R.id.fragmentFrame, new HeightWeight()).setReorderingAllowed(true).addToBackStack(null);
-//        fragTran.commit();
-//    }
 
     void callFragment(Fragment fragment){
         fragMan = getParentFragmentManager();
