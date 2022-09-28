@@ -32,7 +32,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_toStartOf="@id/mm"
-        android:hint="@string/volume_consumed"
+        android:hint="@string/weight_consumed"
         android:inputType="number"
         android:textSize="12sp" />
 
@@ -42,9 +42,20 @@
         android:layout_height="36dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
-        android:text="@string/mm"
+        android:text="@string/grams"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:layout_alignParentEnd="true"/>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/dateLabel"
+        android:hint="@string/enter_description_of_food_consumed"
+        android:inputType="text"
+        android:textSize="12sp" />
 
 </RelativeLayout>
