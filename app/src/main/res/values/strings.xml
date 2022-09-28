@@ -24,4 +24,15 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="reset">Reset</string>
+    <string name="activity_header">Enter Your Child\'s Activity</string>
+    <string name="bottle_button">Bottle Feed</string>
+    <string name="breast_button">Breast Feed</string>
+    <string name="Food">food</string>
+    <string name="liquid">Liquid</string>
+    <string name="diaper_button">diaper</string>
+    <string name="sleep">Sleep</string>
+    <string name="place_holder">Place Holder Data</string>
+    <string name="enter_date">Enter Date:</string>
+    <string name="volume_consumed">Volume Consumed</string>
+    <string name="mm">mm</string>
 </resources>
