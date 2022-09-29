@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityEntry">
+
+    <TextView
+        android:id="@+id/dateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/enter_date"/>
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_toEndOf="@id/dateLabel"
+        android:inputType="datetime"/>
+
+    <EditText
+        android:id="@+id/volume"
+        android:layout_width="110dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_toStartOf="@id/mm"
+        android:hint="@string/volume_consumed"
+        android:inputType="number"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/mm"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/mm"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_alignParentEnd="true"/>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@id/dateLabel"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:hint="@string/enter_description_of_Liquid_consumed"
+        android:inputType="text"
+        android:textSize="12sp" />
+
+</RelativeLayout>

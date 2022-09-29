@@ -41,4 +41,11 @@
     <string name="weight_consumed">Weight Consumed</string>
     <string name="grams">grams</string>
     <string name="enter_description_of_food_consumed">Enter Description of food consumed</string>
+    <string name="enter_description_of_Liquid_consumed">Enter description of liquid consumed</string>
+    <string name="wet">wet</string>
+    <string name="dirty">Dirty</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="time_slept">Time Slept</string>
 </resources>
