@@ -11,12 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
 public class Home extends Fragment {
 
     FragmentManager fragMan;
     FragmentTransaction fragTran;
-    Button heightWeightButton;
+    Button heightWeightButton, activityButton;
 
     public Home() {
         // Required empty public constructor
@@ -36,6 +35,13 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 callFragment(new HeightWeight());
+            }
+        });
+        activityButton = (Button) view.findViewById(R.id.fragActivity);
+        activityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new ActivityEntry());
             }
         });
 

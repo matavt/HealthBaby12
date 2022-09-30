@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Health Baby 12</string>
-    <string name="Sign_in_button">Sign in wiht Google</string>
+    <string name="Sign_in_button">Sign in with Google</string>
     <string name="email">email</string>
     <string name="name">name</string>
     <string name="welcome">Welcome</string>
@@ -12,11 +12,10 @@
     <string name="tb_records">Records</string>
     <string name="home_menu">Home Menu</string>
     <string name="fragHeightWeight">Record Child\'s Height and Weight</string>
-    <string name="fragActivity">Record An Actitity</string>
+    <string name="fragActivity">Record An Activity</string>
     <string name="fragMilestone">Record a Milestone</string>
     <string name="fragReviewRecord">Review Records</string>
     <string name="fragLinks">Useful Links and Information</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="weight_height_header">Enter Child\'s Weight and Height</string>
     <string name="enter_weight">Enter Weight</string>
