@@ -15,7 +15,7 @@ public class Home extends Fragment {
 
     FragmentManager fragMan;
     FragmentTransaction fragTran;
-    Button heightWeightButton, activityButton;
+    Button heightWeightButton, activityButton, milestoneButton, recordButton, linkButton;
 
     public Home() {
         // Required empty public constructor
@@ -42,6 +42,13 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 callFragment(new ActivityEntry());
+            }
+        });
+        milestoneButton = (Button) view.findViewById(R.id.fragRecordMilestone);
+        milestoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(new Milestone());
             }
         });
 
