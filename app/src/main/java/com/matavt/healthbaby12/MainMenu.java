@@ -18,6 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import io.reactivex.Observable;
+
 
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class MainMenu extends AppCompatActivity {
     Toolbar toolbar;
     FragmentManager fragMan;
     FragmentTransaction fragTran;
-
+    public static HealthBabyDB hbDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class MainMenu extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Health Baby");
         welcome = findViewById(R.id.name);
-
+        hbDB = HealthBabyDB.getInstance(MainMenu.this);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
