@@ -7,58 +7,50 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Bottle#newInstance} factory method to
- * create an instance of this fragment.
- */
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class Bottle extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    Button confirmButton;
+    EditText eDate, eVolume;
+    Float volume;
+    String date;
+    TextView data;
     public Bottle() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Bottle.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Bottle newInstance(String param1, String param2) {
-        Bottle fragment = new Bottle();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottle, container, false);
+        View view = inflater.inflate(R.layout.fragment_bottle, container, false);
+        eDate = view.findViewById(R.id.date);
+        eVolume = view.findViewById(R.id.volume);
+        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(view1 -> {
+            try {
+                date = eDate.getText().toString();
+                volume = Float.parseFloat(eVolume.getText().toString());
+                EntityActivity activity = new EntityActivity(date,"Bottle feed","",volume,"");
+                MainMenu.hbDB.daoActivity().insertActivity(activity)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            } catch (Exception e) {
+                //do nothing
+            }
+        });
+        return view;
     }
 }

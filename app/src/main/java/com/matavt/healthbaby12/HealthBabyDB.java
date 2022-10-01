@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = EntityHeightWeight.class, exportSchema = false, version = 3)
+@Database(entities = {EntityHeightWeight.class, EntityActivity.class}, exportSchema = false, version = 5)
 @TypeConverters({Converters.class})
 public abstract class HealthBabyDB extends RoomDatabase {
     private static final String DB_NAME = "health_baby_db";
@@ -23,4 +23,5 @@ public abstract class HealthBabyDB extends RoomDatabase {
         return instance;
     }
     public abstract DaoHeightWeight daoHeightWeight();
+    public abstract DaoActivity daoActivity();
 }

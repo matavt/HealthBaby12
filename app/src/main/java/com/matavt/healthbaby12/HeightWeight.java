@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HeightWeight extends Fragment {
@@ -25,7 +21,6 @@ public class HeightWeight extends Fragment {
     float weight, height;
     EditText eWeight, eHeight;
     TextView data;
-    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public HeightWeight() {
         // Required empty public constructor
@@ -45,7 +40,10 @@ public class HeightWeight extends Fragment {
         eWeight = view.findViewById(R.id.weightTextInput);
         eHeight = view.findViewById(R.id.heightTextInput);
         data = view.findViewById(R.id.weightHeightData);
-        MainMenu.hbDB.daoHeightWeight().getAll().observeOn(AndroidSchedulers.mainThread()).subscribe(
+        MainMenu.hbDB.daoHeightWeight().getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
                 list -> {
                     StringBuilder sb = new StringBuilder();
                     for (EntityHeightWeight entity: list) {
