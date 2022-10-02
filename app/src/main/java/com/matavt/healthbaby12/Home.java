@@ -30,27 +30,12 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        heightWeightButton = (Button) view.findViewById(R.id.fragHomeWeightHeight);
-        heightWeightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new HeightWeight());
-            }
-        });
-        activityButton = (Button) view.findViewById(R.id.fragActivity);
-        activityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new ActivityEntry());
-            }
-        });
-        milestoneButton = (Button) view.findViewById(R.id.fragRecordMilestone);
-        milestoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Milestone());
-            }
-        });
+        heightWeightButton = view.findViewById(R.id.fragHomeWeightHeight);
+        heightWeightButton.setOnClickListener(view1 -> callFragment(new HeightWeight()));
+        activityButton = view.findViewById(R.id.fragActivity);
+        activityButton.setOnClickListener(view13 -> callFragment(new ActivityEntry()));
+        milestoneButton = view.findViewById(R.id.fragRecordMilestone);
+        milestoneButton.setOnClickListener(view12 -> callFragment(new Milestone()));
 
         return view;
     }
