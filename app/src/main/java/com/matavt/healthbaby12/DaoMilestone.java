@@ -11,11 +11,11 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
-public interface DaoHeightWeight {
+public interface DaoMilestone {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertHeightWeight(EntityHeightWeight heightWeight);
+    Completable insertMilestone(EntityMilestone milestone);
 
-    @Query("SELECT * from EntityHeightWeight")
-    Flowable<List<EntityHeightWeight>> getAll();
+    @Query("SELECT * from EntityMilestone")
+    Flowable<List<EntityMilestone>> getAll();
 }

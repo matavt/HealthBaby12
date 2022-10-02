@@ -24,8 +24,10 @@
         android:layout_marginEnd="12dp"
         android:layout_below="@id/milestoneHeader">
         <RelativeLayout
+            android:id="@+id/checkboxes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <CheckBox
                 android:id="@+id/checkbox1"
                 android:layout_width="match_parent"
@@ -84,19 +86,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="First steps unsupported"
-                android:layout_below="@id/checkbox9"/>
+                android:layout_below="@id/checkbox9" />
             <CheckBox
                 android:id="@+id/checkbox11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Walks on own rarely falls"
-                android:layout_below="@id/checkbox10"/>
+                android:layout_below="@id/checkbox10" />
             <CheckBox
                 android:id="@+id/checkbox12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Squats to pickup items"
-                android:layout_below="@id/checkbox11"/>
+                android:layout_below="@id/checkbox11" />
 
         </RelativeLayout>
     </ScrollView>

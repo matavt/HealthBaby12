@@ -9,7 +9,6 @@ import java.util.Date;
 public class EntityActivity {
     @PrimaryKey(autoGenerate = true)
     public int id;
-
     public String dateTime;
     public String activityType;
     public String duration;
@@ -31,5 +30,4 @@ public class EntityActivity {
                 .append("with ").append(value).append(description);
         return sb.toString();
     }
-
 }
