@@ -7,58 +7,50 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BreastFeed#newInstance} factory method to
- * create an instance of this fragment.
- */
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class BreastFeed extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Button confirmButton;
+    EditText eStartDate, eEndDate, eBreast;
+    String startDate, endDate, breast;
 
     public BreastFeed() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BreastFeed.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BreastFeed newInstance(String param1, String param2) {
-        BreastFeed fragment = new BreastFeed();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_breast_feed, container, false);
+        View view = inflater.inflate(R.layout.fragment_breast_feed, container, false);
+        eStartDate = view.findViewById(R.id.startDate);
+        eEndDate = view.findViewById(R.id.endDate);
+        eBreast = view.findViewById(R.id.breastInput);
+        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(view1 -> {
+            try {
+                startDate = eStartDate.getText().toString();
+                endDate = eEndDate.getText().toString();
+                breast = eBreast.getText().toString();
+                EntityActivity activity = new EntityActivity(
+                        startDate,"Breast feed",endDate,0,breast);
+                MainMenu.hbDB.daoActivity().insertActivity(activity)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            } catch (Exception e) {
+                //do nothing
+            }
+        });
+        return view;
     }
 }
