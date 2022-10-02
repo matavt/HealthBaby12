@@ -36,6 +36,7 @@ public class Food extends Fragment {
         eDate = view.findViewById(R.id.date);
         eDescription = view.findViewById(R.id.description);
         eVolume = view.findViewById(R.id.volume);
+        confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
                 date = eDate.getText().toString();

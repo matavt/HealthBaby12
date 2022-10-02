@@ -7,58 +7,73 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Diaper#newInstance} factory method to
- * create an instance of this fragment.
- */
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class Diaper extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Button confirmButton;
+    RadioGroup dirty, weight;
+    EditText eDate;
+    String date, description;
 
     public Diaper() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Diaper.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Diaper newInstance(String param1, String param2) {
-        Diaper fragment = new Diaper();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_diaper, container, false);
+        View view = inflater.inflate(R.layout.fragment_diaper, container, false);
+        eDate = view.findViewById(R.id.date);
+        dirty = view.findViewById(R.id.radio_group_diaper);
+        weight = view.findViewById(R.id.radio_group_full);
+        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(view1 -> {
+            try {
+                StringBuilder sb = new StringBuilder();
+                date = eDate.getText().toString();
+                switch(dirty.getCheckedRadioButtonId()) {
+                    case R.id.radio_wet:
+                        sb.append("Diaper is Wet ");
+                        break;
+                    case R.id.radio_dirt:
+                        sb.append("Diaper is Dirty ");
+                        break;
+                }
+                switch(weight.getCheckedRadioButtonId()) {
+                    case R.id.radio_light:
+                        sb.append("and of light weight.");
+                        break;
+                    case R.id.radio_medium:
+                        sb.append("and of medium weight.");
+                        break;
+                    case R.id.radio_heavy:
+                        sb.append("and of heavy weight.");
+                        break;
+                }
+                description = sb.toString();
+                EntityActivity activity = new EntityActivity(
+                        date,"Dirty Diaper","",0,description);
+                MainMenu.hbDB.daoActivity().insertActivity(activity)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            } catch (Exception e){
+                //do nothing
+            }
+        });
+
+
+        return view;
     }
 }
