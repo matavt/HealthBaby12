@@ -149,4 +149,6 @@
     <string name="total_feed_time_in_minutes">Total Feed time in minutes</string>
     <string name="date_diaper_changed">Date Diaper changed</string>
     <string name="time_diaper_changed">Time Diaper Changed</string>
+    <string name="sleep_time_in_hours">Sleep time in hours</string>
+    <string name="volume_of_liquid_consumed">Volume of liquid consumed</string>
 </resources>
