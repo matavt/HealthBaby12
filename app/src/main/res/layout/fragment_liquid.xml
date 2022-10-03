@@ -61,7 +61,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:layout_toStartOf="@id/mm"
-        android:hint="@string/weight_consumed"
+        android:hint="@string/volume_of_liquid_consumed"
         android:inputType="number"
         android:textSize="18sp"
         android:layout_below="@id/time"/>
