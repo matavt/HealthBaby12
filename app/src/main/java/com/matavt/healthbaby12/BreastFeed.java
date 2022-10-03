@@ -41,8 +41,7 @@ public class BreastFeed extends Fragment {
                 startDate = eStartDate.getText().toString();
                 endDate = eEndDate.getText().toString();
                 breast = eBreast.getText().toString();
-                EntityActivity activity = new EntityActivity(
-                        startDate,"Breast feed",endDate,0,breast);
+                EntityActivity activity = new EntityActivity("Breast Feed");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

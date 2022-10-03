@@ -18,4 +18,7 @@ public interface DaoActivity {
 
     @Query("SELECT * from EntityActivity")
     Flowable<List<EntityActivity>> getAll();
+
+    @Query("DELETE from EntityActivity")
+    Completable deleteAllActivity();
 }

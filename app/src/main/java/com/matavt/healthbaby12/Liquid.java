@@ -44,8 +44,7 @@ public class Liquid extends Fragment {
                 date = eDate.getText().toString();
                 description = eDescription.getText().toString();
                 volume = Float.parseFloat(eVolume.getText().toString());
-                EntityActivity activity = new EntityActivity(
-                        date,"Drunk Liquid","",volume,description);
+                EntityActivity activity = new EntityActivity("Drunk Liquid");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

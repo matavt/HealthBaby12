@@ -2,7 +2,6 @@ package com.matavt.healthbaby12;
 
 import android.os.Bundle;
 
-import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -52,7 +51,7 @@ public class HeightWeight extends Fragment {
                     data.setText(sb.toString());
             }
         );
-        confirmButton = (Button) view.findViewById(R.id.confirmButton);
+        confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
                 sWeight = eWeight.getText().toString();
@@ -68,12 +67,11 @@ public class HeightWeight extends Fragment {
                 eHeight.setText("");
             }
             catch (Exception e) {
-                data.setText("error: " + e.toString());
+                data.setText(String.format("error: %s", e));
             }
             });
 
         return view;
     }
-
 
 }

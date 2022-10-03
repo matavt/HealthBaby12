@@ -42,8 +42,7 @@ public class Food extends Fragment {
                 date = eDate.getText().toString();
                 description = eDescription.getText().toString();
                 volume = Float.parseFloat(eVolume.getText().toString());
-                EntityActivity activity = new EntityActivity(
-                        date,"Eaten Food","",volume,description);
+                EntityActivity activity = new EntityActivity("Eaten Food");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

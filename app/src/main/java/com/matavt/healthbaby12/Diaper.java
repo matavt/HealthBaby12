@@ -62,8 +62,7 @@ public class Diaper extends Fragment {
                         break;
                 }
                 description = sb.toString();
-                EntityActivity activity = new EntityActivity(
-                        date,"Dirty Diaper","",0,description);
+                EntityActivity activity = new EntityActivity("Dirty Diaper");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

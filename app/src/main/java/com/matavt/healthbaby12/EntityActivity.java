@@ -9,25 +9,14 @@ import java.util.Date;
 public class EntityActivity {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    public String dateTime;
-    public String activityType;
-    public String duration;
-    public float value;
-    public String description;
+    public String record;
 
-    public EntityActivity(String dateTime, String activityType, String duration, float value, String description) {
-        this.dateTime = dateTime;
-        this.activityType = activityType;
-        this.duration = duration;
-        this.value = value;
-        this.description = description;
+    public EntityActivity(String record) {
+        this.record = record;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(dateTime).append(": ").append(activityType).append(" for").append(duration)
-                .append("with ").append(value).append(description);
-        return sb.toString();
+        return id + ": " + this.record;
     }
 }

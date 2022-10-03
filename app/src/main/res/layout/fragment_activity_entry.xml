@@ -86,6 +86,32 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/liquidButton"/>
 
+    <ScrollView
+        android:id="@+id/activityScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_below="@id/activityFrame">
+        <TextView
+            android:id="@+id/activityData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/place_holder"
+            android:textAlignment="center"/>
+    </ScrollView>
 
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/activityScroll"
+        android:layout_alignParentEnd="true"
+        android:text="@string/clear_all_activity_data"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
 
 </RelativeLayout>

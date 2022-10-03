@@ -42,7 +42,7 @@ public class Bottle extends Fragment {
             try {
                 date = eDate.getText().toString();
                 volume = Float.parseFloat(eVolume.getText().toString());
-                EntityActivity activity = new EntityActivity(date,"Bottle feed","",volume,"");
+                EntityActivity activity = new EntityActivity("Bottle Feed");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

@@ -39,8 +39,7 @@ public class Sleep extends Fragment {
             try {
                 date = eDate.getText().toString();
                 duration = eDuration.getText().toString();
-                EntityActivity activity = new EntityActivity(
-                        date, "Sleep", duration, 0, "");
+                EntityActivity activity = new EntityActivity("Sleep");
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
