@@ -121,7 +121,7 @@ public class MainMenu extends AppCompatActivity {
     public void addChild(View view) {
         fragMan = getSupportFragmentManager();
         fragTran = fragMan.beginTransaction();
-        fragTran.replace(R.id.childFrame, new AddChild()).setReorderingAllowed(true);
+        fragTran.replace(R.id.childFrame, new AddChild()).setReorderingAllowed(true).addToBackStack(null);
         fragTran.commit();
     }
 }

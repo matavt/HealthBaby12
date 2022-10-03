@@ -11,16 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Date;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddChild extends Fragment {
 
     private DatePickerDialog datePickerDialog;
     private Button datePickerButton, confirmButton;
-    private TextView dateText;
+    private EditText eName;
+    private int[] dateArray;
 
     public AddChild() {
         // Required empty public constructor
@@ -42,6 +48,17 @@ public class AddChild extends Fragment {
         datePickerButton.setOnClickListener(view1 -> {
             openDatePicker(view1);
         });
+        eName = view.findViewById(R.id.childName);
+        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(view1 -> {
+            String name = eName.getText().toString();
+            EntityChild child = new EntityChild(name, new Date(dateArray[0], dateArray[1],dateArray[2]));
+            MainMenu.hbDB.daoChild().insertChild(child)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
+            getActivity().getFragmentManager().popBackStack();
+        });
 
         return view;
     }
@@ -53,6 +70,7 @@ public class AddChild extends Fragment {
                 month = month + 1;
                 String dateString = DateFunctions.createStringFromDate(day, month, year);
                 datePickerButton.setText(dateString);
+                dateArray = new int[]{year, month, day};
             }
         };
 
