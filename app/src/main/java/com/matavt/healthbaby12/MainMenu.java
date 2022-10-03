@@ -99,7 +99,6 @@ public class MainMenu extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -118,7 +117,10 @@ public class MainMenu extends AppCompatActivity {
     }
 
     void loadRecords(){
-        //to be implemented
+        fragMan = getSupportFragmentManager();
+        fragTran = fragMan.beginTransaction();
+        fragTran.replace(R.id.fragmentFrame, new Records()).setReorderingAllowed(true);
+        fragTran.commit();
     }
 
     void loadReset(){

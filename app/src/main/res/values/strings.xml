@@ -151,4 +151,7 @@
     <string name="time_diaper_changed">Time Diaper Changed</string>
     <string name="sleep_time_in_hours">Sleep time in hours</string>
     <string name="volume_of_liquid_consumed">Volume of liquid consumed</string>
+    <string name="select_data_to_view">Select Data to View</string>
+    <string name="weight_height">Weight Height</string>
+    <string name="activities">Activities</string>
 </resources>

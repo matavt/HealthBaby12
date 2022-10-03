@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Records">
+
+
+    <TextView
+        android:id="@+id/activityHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_data_to_view"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/weightHeightButton"
+        android:layout_width="120dp"
+        android:layout_height="56dp"
+        android:layout_below="@id/activityHeader"
+        android:text="@string/weight_height"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
+    <Button
+        android:id="@+id/activitiesButton"
+        android:layout_width="120dp"
+        android:layout_height="56dp"
+        android:layout_below="@id/activityHeader"
+        android:layout_centerHorizontal="true"
+        android:text="@string/activities"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
+    <Button
+        android:id="@+id/milestoneButton"
+        android:layout_width="120dp"
+        android:layout_height="56dp"
+        android:layout_below="@id/activityHeader"
+        android:layout_alignParentEnd="true"
+        android:text="@string/milestones"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
+
+    <FrameLayout
+        android:id="@+id/recordFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weightHeightButton">
+    </FrameLayout>
+
+</RelativeLayout>

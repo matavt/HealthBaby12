@@ -36,6 +36,8 @@ public class Home extends Fragment {
         activityButton.setOnClickListener(view13 -> callFragment(new ActivityEntry()));
         milestoneButton = view.findViewById(R.id.fragRecordMilestone);
         milestoneButton.setOnClickListener(view12 -> callFragment(new Milestone()));
+        recordButton = view.findViewById(R.id.fragReviewRecord);
+        recordButton.setOnClickListener(view13 -> callFragment(new Records()));
 
         return view;
     }
