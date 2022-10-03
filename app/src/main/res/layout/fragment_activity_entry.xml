@@ -90,16 +90,17 @@
         android:id="@+id/activityScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_below="@id/activityFrame"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_below="@id/activityFrame">
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp">
+
         <TextView
             android:id="@+id/activityData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/place_holder"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
     </ScrollView>
 
     <Button

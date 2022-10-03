@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ActivityEntry extends Fragment {
 
@@ -81,6 +81,18 @@ public class ActivityEntry extends Fragment {
                 callFragment(new Sleep());
             }
         });
+
+        MainMenu.hbDB.daoActivity().getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        list -> {
+                            StringBuilder sb = new StringBuilder();
+                            for (EntityActivity entity: list) {
+                                sb.append(entity.toString()).append("\n");
+                            }
+                            data.setText(sb.toString());
+                        });
         return view;
     }
 
