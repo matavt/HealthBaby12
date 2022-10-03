@@ -37,7 +37,7 @@
     <string name="started_feed">Started Feed:</string>
     <string name="number_of_breast_fed_on">Number of Breast fed on</string>
     <string name="finished_feed">Finished Feed</string>
-    <string name="weight_consumed">Weight Consumed</string>
+    <string name="weight_consumed">Weight of Food Consumed</string>
     <string name="grams">grams</string>
     <string name="enter_description_of_food_consumed">Enter Description of food consumed</string>
     <string name="enter_description_of_Liquid_consumed">Enter description of liquid consumed</string>

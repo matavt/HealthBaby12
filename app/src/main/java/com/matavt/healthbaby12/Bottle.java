@@ -53,9 +53,6 @@ public class Bottle extends Fragment {
         timePickerButton.setText("08:00");
         timePickerButton.setOnClickListener(this::openTimePicker);
 
-        eVolume = view.findViewById(R.id.volume);
-
-
         confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             volume = eVolume.getText().toString();
