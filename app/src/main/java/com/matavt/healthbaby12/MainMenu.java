@@ -21,6 +21,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class MainMenu extends AppCompatActivity {
@@ -62,7 +63,10 @@ public class MainMenu extends AppCompatActivity {
                             User.getInstance().setChildName(child.getName());
                             User.getInstance().setChildDoB(child.getDate());
                             childDetails.setClickable(false);
-                            childDetails.setText(String.format("%s Born: %s", child.getName(), child.getDate()));
+                            Date childDob = child.getDate();
+                            String StringDate = DateFunctions.createStringFromDate(childDob.getDay(), childDob.getMonth(), childDob.getYear());
+                            childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
+                            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG")).commit();
                         } catch (Exception e) {
                             //do nothing.
                         }
@@ -86,10 +90,13 @@ public class MainMenu extends AppCompatActivity {
                 return true;
             case R.id.ab_home:
                 loadHomeMenu();
+                return true;
             case R.id.ab_records:
                 loadRecords();
-            case R.id.ab_sync:
-                loadSync();
+                return true;
+            case R.id.ab_clearData:
+                loadReset();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -114,14 +121,17 @@ public class MainMenu extends AppCompatActivity {
         //to be implemented
     }
 
-    void loadSync(){
-        //to be implemented
+    void loadReset(){
+
+        MainMenu.hbDB.clearAllTables();
+        signOutMethod();
+
     }
 
     public void addChild(View view) {
         fragMan = getSupportFragmentManager();
         fragTran = fragMan.beginTransaction();
-        fragTran.replace(R.id.childFrame, new AddChild()).setReorderingAllowed(true).addToBackStack(null);
+        fragTran.replace(R.id.childFrame, new AddChild(), "CHILD_FRAG").setReorderingAllowed(true);
         fragTran.commit();
     }
 }

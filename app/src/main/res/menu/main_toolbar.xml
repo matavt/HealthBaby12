@@ -14,8 +14,8 @@
         app:showAsAction="collapseActionView"/>
 
     <item
-        android:id="@+id/ab_sync"
-        android:title="@string/tb_sync"
+        android:id="@+id/ab_clearData"
+        android:title="@string/reset_data"
         app:showAsAction="collapseActionView" />
 
     <item

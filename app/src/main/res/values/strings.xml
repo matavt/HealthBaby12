@@ -140,4 +140,5 @@
     <string name="enter_child_s_name">Enter Child\'s Name</string>
     <string name="select_child_s_date_of_birth">Select Child\'s Date of Birth:</string>
     <string name="jan_01_2020">JAN 01 2020</string>
+    <string name="reset_data">Reset Data</string>
 </resources>

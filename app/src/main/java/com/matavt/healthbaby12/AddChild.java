@@ -57,7 +57,6 @@ public class AddChild extends Fragment {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();
-            getActivity().getFragmentManager().popBackStack();
         });
 
         return view;
