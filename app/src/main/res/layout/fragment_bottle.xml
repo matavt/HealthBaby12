@@ -6,46 +6,64 @@
     tools:context=".ActivityEntry">
 
     <TextView
-        android:id="@+id/dateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:textSize="18sp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/enter_date"/>
-
-    <EditText
         android:id="@+id/date"
-        android:layout_width="100dp"
-        android:layout_height="36dp"
-        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_of_feed"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_toEndOf="@id/dateLabel"
-        android:inputType="datetime"/>
+        />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/jan_01_2020"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/date"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_of_feed"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/datePickerButton"
+        android:layout_marginStart="12dp"
+        />
+
+    <Button
+        android:id="@+id/timePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/_08_00"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/datePickerButton"
+        android:layout_toEndOf="@id/time"/>
 
     <EditText
         android:id="@+id/volume"
-        android:layout_width="110dp"
-        android:layout_height="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:layout_toStartOf="@id/mm"
-        android:hint="@string/volume_consumed"
+        android:hint="@string/volume_consumed_in_ml"
         android:inputType="number"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/mm"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:text="@string/mm"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_alignParentEnd="true"/>
+        android:textSize="24sp"
+        android:layout_below="@id/timePickerButton"
+        android:autofillHints="200"/>
 
     <Button
         android:id="@+id/confirmButton"
@@ -57,19 +75,6 @@
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         />
-
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="120dp"
-        android:layout_height="56dp"
-        android:layout_below="@id/volume"
-        android:text="@string/reset"
-        android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_alignParentEnd="true"
-        />
-
 </RelativeLayout>

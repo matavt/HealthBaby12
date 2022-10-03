@@ -142,4 +142,8 @@
     <string name="jan_01_2020">JAN 01 2020</string>
     <string name="reset_data">Reset Data</string>
     <string name="clear_all_activity_data">Clear All Activity Data</string>
+    <string name="date_of_feed">Date of Feed</string>
+    <string name="volume_consumed_in_ml">volume consumed in ml</string>
+    <string name="time_of_feed">Time of Feed</string>
+    <string name="_08_00">08:00</string>
 </resources>

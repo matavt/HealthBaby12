@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class DateFunctions {
 
-    public static String createStringFromDate(int day, int month, int year) {
+    public static String createStringFromDate(int year, int month, int day) {
         String monthString;
 
         switch(month) {
@@ -58,5 +58,9 @@ public class DateFunctions {
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return createStringFromDate(day, month, year);
+    }
+
+    public static String createStringFromTime(int hour, int minute){
+        return hour + ":" + minute;
     }
 }

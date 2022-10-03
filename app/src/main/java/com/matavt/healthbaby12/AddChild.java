@@ -5,15 +5,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.CancellationSignal;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -45,9 +42,7 @@ public class AddChild extends Fragment {
         initDatePicker();
         datePickerButton = view.findViewById(R.id.datePickerButton);
         datePickerButton.setText(DateFunctions.getTodaysDate());
-        datePickerButton.setOnClickListener(view1 -> {
-            openDatePicker(view1);
-        });
+        datePickerButton.setOnClickListener(this::openDatePicker);
         eName = view.findViewById(R.id.childName);
         confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
@@ -63,14 +58,11 @@ public class AddChild extends Fragment {
     }
 
     private void initDatePicker(){
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String dateString = DateFunctions.createStringFromDate(day, month, year);
-                datePickerButton.setText(dateString);
-                dateArray = new int[]{year, month, day};
-            }
+        DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
+            month = month + 1;
+            String dateString = DateFunctions.createStringFromDate(year, month, day);
+            datePickerButton.setText(dateString);
+            dateArray = new int[]{year, month, day};
         };
 
         Calendar cal = Calendar.getInstance();
@@ -83,6 +75,5 @@ public class AddChild extends Fragment {
     public void openDatePicker(View view){
         datePickerDialog.show();
     }
-
 
 }

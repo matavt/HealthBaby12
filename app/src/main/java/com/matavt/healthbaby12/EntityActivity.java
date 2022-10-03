@@ -9,6 +9,7 @@ import java.util.Date;
 public class EntityActivity {
     @PrimaryKey(autoGenerate = true)
     public int id;
+
     public String record;
 
     public EntityActivity(String record) {
