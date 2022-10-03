@@ -65,6 +65,7 @@ public class Bottle extends Fragment {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();
+            getParentFragmentManager().beginTransaction().remove(this).commit();
         });
         return view;
     }

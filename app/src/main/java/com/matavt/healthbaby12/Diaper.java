@@ -86,6 +86,7 @@ public class Diaper extends Fragment {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe();
+                getParentFragmentManager().beginTransaction().remove(this).commit();
             } catch (Exception e){
                 //do nothing
             }
