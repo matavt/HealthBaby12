@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddChild">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/childName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:hint="@string/enter_child_s_name"
+        android:inputType="text"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/select_child_s_date_of_birth"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp"
+        android:layout_below= "@id/childName"
+        />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/jan_01_2020"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/date"/>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="120dp"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/datePickerButton"
+        android:text="@string/confirm"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        />
+
+</RelativeLayout>

@@ -15,7 +15,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -25,14 +24,35 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_toolbar"
         android:background="@color/teal_200"
-        android:textSize="36sp"
+        android:textSize="24sp"
         android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ChildName"
+        android:text="Create Child"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/name"
+        android:background="@color/teal_700"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:onClick="addChild"/>
+
+    <FrameLayout
+        android:id="@+id/childFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ChildName">
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fragmentFrame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name">
+        android:layout_below="@id/childFrame">
     </FrameLayout>
 
 </RelativeLayout>

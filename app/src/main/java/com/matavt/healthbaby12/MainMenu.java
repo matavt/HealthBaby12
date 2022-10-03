@@ -6,27 +6,27 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import io.reactivex.Observable;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import java.text.MessageFormat;
 import java.util.Objects;
 
 public class MainMenu extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    TextView welcome;
+    TextView welcome, childDetails;
     Toolbar toolbar;
     FragmentManager fragMan;
     FragmentTransaction fragTran;
@@ -36,7 +36,7 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Health Baby");
         welcome = findViewById(R.id.name);
@@ -48,10 +48,25 @@ public class MainMenu extends AppCompatActivity {
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account !=null) {
-            String accountName = account.getDisplayName();
-            welcome.setText("Welcome: " + accountName);
+            User.getInstance().setUserName(account.getDisplayName());
+            welcome.setText(MessageFormat.format("Welcome: {0}", User.getInstance().getUserName()));
         }
-
+        childDetails = findViewById(R.id.ChildName);
+        hbDB.daoChild().getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    list -> {
+                        try {
+                            EntityChild child = list.get(0);
+                            User.getInstance().setChildName(child.getName());
+                            User.getInstance().setChildDoB(child.getDate());
+                            childDetails.setClickable(false);
+                            childDetails.setText(String.format("%s Born: %s", child.getName(), child.getDate()));
+                        } catch (Exception e) {
+                            //do nothing.
+                        }
+                    });
         loadHomeMenu();
     }
 
@@ -101,5 +116,12 @@ public class MainMenu extends AppCompatActivity {
 
     void loadSync(){
         //to be implemented
+    }
+
+    public void addChild(View view) {
+        fragMan = getSupportFragmentManager();
+        fragTran = fragMan.beginTransaction();
+        fragTran.replace(R.id.childFrame, new AddChild()).setReorderingAllowed(true);
+        fragTran.commit();
     }
 }

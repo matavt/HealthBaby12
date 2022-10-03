@@ -9,14 +9,14 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 
 @Dao
-public interface DaoHeightWeight {
+public interface DaoChild {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insertHeightWeight(EntityHeightWeight heightWeight);
+    Completable insertChild(EntityChild child);
 
-    @Query("SELECT * from EntityHeightWeight")
-    Flowable<List<EntityHeightWeight>> getAll();
-
+    @Query("SELECT * from EntityChild")
+    Flowable<List<EntityChild>> getAll();
 }

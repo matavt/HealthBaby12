@@ -50,7 +50,7 @@ public class HeightWeight extends Fragment {
                         sb.append(entity.toString()).append("\n");
                     }
                     data.setText(sb.toString());
-                }
+            }
         );
         confirmButton = (Button) view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
