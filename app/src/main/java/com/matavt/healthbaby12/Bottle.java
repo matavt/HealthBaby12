@@ -50,7 +50,7 @@ public class Bottle extends Fragment {
         datePickerButton.setOnClickListener(this::openDatePicker);
 
         timePickerButton=view.findViewById(R.id.timePickerButton);
-        timePickerButton.setText(DateFunctions.getTodaysDate());
+        timePickerButton.setText("08:00");
         timePickerButton.setOnClickListener(this::openTimePicker);
 
         eVolume = view.findViewById(R.id.volume);
@@ -81,8 +81,7 @@ public class Bottle extends Fragment {
         };
 
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);        int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(getContext(), dateSetListener, year, month, day);
     }
