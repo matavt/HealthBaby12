@@ -6,31 +6,59 @@
     tools:context=".ActivityEntry">
 
     <TextView
-        android:id="@+id/dateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:textSize="18sp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/enter_date"/>
-
-    <EditText
         android:id="@+id/date"
-        android:layout_width="100dp"
-        android:layout_height="36dp"
-        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_diaper_changed"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_toEndOf="@id/dateLabel"
-        android:inputType="datetime"/>
+        />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/jan_01_2020"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/date"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/time_diaper_changed"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/datePickerButton"
+        android:layout_marginStart="12dp"
+        />
+
+    <Button
+        android:id="@+id/timePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/_08_00"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/datePickerButton"
+        android:layout_toEndOf="@id/time"/>
 
     <RadioGroup
         android:id="@+id/radio_group_diaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/dateLabel"
+        android:layout_below="@id/time"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp">

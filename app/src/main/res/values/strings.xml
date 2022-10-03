@@ -147,4 +147,6 @@
     <string name="time_of_feed">Time of Feed</string>
     <string name="_08_00">08:00</string>
     <string name="total_feed_time_in_minutes">Total Feed time in minutes</string>
+    <string name="date_diaper_changed">Date Diaper changed</string>
+    <string name="time_diaper_changed">Time Diaper Changed</string>
 </resources>
