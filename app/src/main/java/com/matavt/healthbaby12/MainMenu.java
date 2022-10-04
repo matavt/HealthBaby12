@@ -64,7 +64,7 @@ public class MainMenu extends AppCompatActivity {
                             User.getInstance().setChildDoB(child.getDate());
                             childDetails.setClickable(false);
                             Date childDob = child.getDate();
-                            String StringDate = DateFunctions.createStringFromDate(childDob.getDay(), childDob.getMonth(), childDob.getYear());
+                            String StringDate = DateFunctions.createStringFromDate(childDob.getYear(), childDob.getMonth(), childDob.getDay());
                             childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
                             getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG")).commit();
                         } catch (Exception e) {

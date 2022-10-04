@@ -57,10 +57,12 @@ public class DateFunctions {
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return createStringFromDate(day, month, year);
+        return createStringFromDate(year, month, day);
     }
 
     public static String createStringFromTime(int hour, int minute){
-        return hour + ":" + minute;
+        String time;
+        time = String.format("%02d:%02d",hour,minute);
+        return time;
     }
 }
