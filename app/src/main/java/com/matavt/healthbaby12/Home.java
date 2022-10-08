@@ -38,6 +38,8 @@ public class Home extends Fragment {
         milestoneButton.setOnClickListener(view12 -> callFragment(new Milestone()));
         recordButton = view.findViewById(R.id.fragReviewRecord);
         recordButton.setOnClickListener(view13 -> callFragment(new Records()));
+        linkButton = view.findViewById(R.id.fragLinks);
+        linkButton.setOnClickListener(view14 -> callFragment(new Links()));
 
         return view;
     }
