@@ -3,6 +3,7 @@ package com.matavt.healthbaby12;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -31,5 +32,14 @@ public class EntityMilestone {
 
     public boolean getAchieved() {
         return achieved;
+    }
+
+    @Override
+    public String toString() {
+        String dateFormatted = DateFunctions.createStringFromDate(this.date.getYear()+1900,
+                this.date.getMonth() + 1, this.date.getDay());
+        return description +
+                " achieved on " +
+                dateFormatted;
     }
 }

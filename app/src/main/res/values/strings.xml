@@ -157,4 +157,5 @@
     <string name="send_activity_data_by_email">Send Activity data by Email</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="record">record</string>
 </resources>

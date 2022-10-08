@@ -6,7 +6,6 @@ public class DateFunctions {
 
     public static String createStringFromDate(int year, int month, int day) {
         String monthString;
-
         switch(month) {
             case 1:
                 monthString = "Jan";
