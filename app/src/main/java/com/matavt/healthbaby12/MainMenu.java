@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import java.text.MessageFormat;
@@ -45,9 +45,9 @@ public class MainMenu extends AppCompatActivity {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        gsc = GoogleSignIn.getClient(this,gso);
+        gsc = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(this,gso);
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount account = com.google.android.gms.auth.api.signin.GoogleSignIn.getLastSignedInAccount(this);
         if(account !=null) {
             User.getInstance().setUserName(account.getDisplayName());
             welcome.setText(MessageFormat.format("Welcome: {0}", User.getInstance().getUserName()));
@@ -57,20 +57,21 @@ public class MainMenu extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    list -> {
-                        try {
-                            EntityChild child = list.get(0);
-                            User.getInstance().setChildName(child.getName());
-                            User.getInstance().setChildDoB(child.getDate());
-                            childDetails.setClickable(false);
-                            Date childDob = child.getDate();
-                            String StringDate = DateFunctions.createStringFromDate(childDob.getYear(), childDob.getMonth(), childDob.getDay());
-                            childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
-                            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG")).commit();
-                        } catch (Exception e) {
-                            //do nothing.
-                        }
-                    });
+                        list -> {
+                            try {
+                                EntityChild child = list.get(0);
+                                User.getInstance().setChildName(child.getName());
+                                User.getInstance().setChildDoB(child.getDate());
+                                childDetails.setClickable(false);
+                                Date childDob = child.getDate();
+                                String StringDate = DateFunctions.createStringFromDate(childDob.getYear(), childDob.getMonth(), childDob.getDay());
+                                childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
+                                getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG")).commit();
+                            } catch (Exception e) {
+                                //do nothing.
+                            }
+                        });
+
         loadHomeMenu();
     }
 
@@ -105,7 +106,7 @@ public class MainMenu extends AppCompatActivity {
     void signOutMethod(){
         gsc.signOut().addOnCompleteListener(task -> {
             finish();
-            startActivity(new Intent(MainMenu.this,GoogleSignin.class));
+            startActivity(new Intent(MainMenu.this, GoogleSignIn.class));
         });
     }
 

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import java.util.Calendar;
@@ -22,7 +21,8 @@ public class Diaper extends Fragment {
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private Button confirmButton, datePickerButton, timePickerButton;
+    private Button datePickerButton;
+    private Button timePickerButton;
     RadioGroup dirty, weight;
     private int[] dateArray, timeArray;
 
@@ -53,7 +53,7 @@ public class Diaper extends Fragment {
         timePickerButton.setText("08:00");
         timePickerButton.setOnClickListener(this::openTimePicker);
 
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
 
             try {

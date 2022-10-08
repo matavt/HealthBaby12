@@ -13,7 +13,7 @@ public class Links extends Fragment {
 
     ListView linksList;
 
-    String[] urls = {
+    private final String[] urls = {
             "https://www.pregnancybirthbaby.org.au/",
             "https://www.breastfeeding.asn.au/",
             "https://raisingchildren.net.au/",
@@ -23,7 +23,7 @@ public class Links extends Fragment {
             "https://www.cafhs.sa.gov.au/",
             "https://panda.org.au/"
     };
-    String[] titles = {
+    private final String[] titles = {
             "Pregnancy Birth & Baby",
             "Australian Breastfeeding Association",
             "Raising Children",
@@ -33,7 +33,7 @@ public class Links extends Fragment {
             "Child and Family Health Service SA",
             "Perinatal Anxiety & Depression Australia"
     };
-    String[] description = {
+    private final String[] description = {
             "Australian website supporting parents from pregnancy to preschool",
             "Support and information for breast feeding",
             "Australian Parenting website",

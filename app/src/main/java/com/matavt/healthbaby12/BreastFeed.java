@@ -20,7 +20,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class BreastFeed extends Fragment {
 
     private DatePickerDialog datePickerDialog;
-    private Button confirmButton, timePickerButton, datePickerButton;
+    private Button timePickerButton;
+    private Button datePickerButton;
     private TimePickerDialog timePickerDialog;
     private EditText eEndTime, eBreast;
     private String endTime, breast;
@@ -45,13 +46,13 @@ public class BreastFeed extends Fragment {
         eEndTime = view.findViewById(R.id.endTime);
         eBreast = view.findViewById(R.id.breastInput);
         timePickerButton = view.findViewById(R.id.startTimePickerButton);
-        timePickerButton.setText("08:00");
+        timePickerButton.setText(R.string.time);
         timePickerButton.setOnClickListener(this::openTimePicker);
         datePickerButton=view.findViewById(R.id.datePickerButton);
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
 
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
                 endTime = eEndTime.getText().toString();

@@ -11,10 +11,10 @@ import android.widget.ArrayAdapter;
 
 public class LinksAdapter extends ArrayAdapter<String> {
 
-    Context context;
-    String[] titles;
-    String[] description;
-    String[] urls;
+    private final Context context;
+    private final String[] titles;
+    private final String[] description;
+    private final String[] urls;
 
     public LinksAdapter(Context context, String[] titles, String[] description, String[] urls) {
         super(context, R.layout.single_link, titles);
@@ -27,7 +27,7 @@ public class LinksAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(final  int position, View convertView, ViewGroup parent) {
         View singleItem = convertView;
-        LinkViewHolder holder = null;
+        LinkViewHolder holder;
         if (singleItem == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             singleItem = layoutInflater.inflate(R.layout.single_link, parent, false);
@@ -39,12 +39,9 @@ public class LinksAdapter extends ArrayAdapter<String> {
 
         holder.title.setText(titles[position]);
         holder.description.setText(description[position]);
-        singleItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
-                context.startActivity(intent);
-            }
+        singleItem.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
+            context.startActivity(intent);
         });
         return singleItem;
     }

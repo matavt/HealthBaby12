@@ -13,7 +13,6 @@ import android.widget.Button;
 
 public class Records extends Fragment {
 
-    private Button weightButton, activityButton, milestoneButton;
     FragmentManager fragMan;
     FragmentTransaction fragTran;
     public Records() {
@@ -29,11 +28,11 @@ public class Records extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_records, container, false);
-        weightButton = view.findViewById(R.id.weightHeightButton);
+        Button weightButton = view.findViewById(R.id.weightHeightButton);
         weightButton.setOnClickListener(view1 -> callFragment(new RecordWeightHeight()));
-        activityButton = view.findViewById(R.id.activitiesButton);
+        Button activityButton = view.findViewById(R.id.activitiesButton);
         activityButton.setOnClickListener(view1 -> callFragment(new RecordActivity()));
-        milestoneButton = view.findViewById(R.id.milestoneButton);
+        Button milestoneButton = view.findViewById(R.id.milestoneButton);
         milestoneButton.setOnClickListener(view1 -> callFragment(new RecordMilestone()));
 
         return view;

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 public class MilestoneViewHolder {
-    CheckBox checkBox;
+    public final CheckBox checkBox;
 
     MilestoneViewHolder(View view){
         checkBox = view.findViewById(R.id.milestoneCheck);

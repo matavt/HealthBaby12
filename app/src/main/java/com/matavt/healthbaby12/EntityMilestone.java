@@ -1,9 +1,8 @@
 package com.matavt.healthbaby12;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -34,6 +33,7 @@ public class EntityMilestone {
         return achieved;
     }
 
+    @NonNull
     @Override
     public String toString() {
         String dateFormatted = DateFunctions.createStringFromDate(this.date.getYear()+1900,

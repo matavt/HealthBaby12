@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RecordWeightHeight extends Fragment {
@@ -42,20 +43,20 @@ public class RecordWeightHeight extends Fragment {
         View view = inflater.inflate(R.layout.fragment_record_weight_height, container, false);
         weightChart = view.findViewById(R.id.weightChart);
         heightChart = view.findViewById(R.id.heightChart);
-        weightDataList = new ArrayList<Entry>();
-        heightDataList = new ArrayList<Entry>();
+        weightDataList = new ArrayList<>();
+        heightDataList = new ArrayList<>();
 
-        MainMenu.hbDB.daoHeightWeight().getAll()
+        Disposable subscribe = MainMenu.hbDB.daoHeightWeight().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
-                            for (EntityHeightWeight entity:list) {
-                                int age = (int) Duration.between(entity.date.toInstant(),User.getInstance().getChildDoB().toInstant()).toDays();
-                                weightDataList.add(new Entry(age,entity.weight));
-                                heightDataList.add(new Entry(age,entity.height));
-                                Log.i("age",String.valueOf(age));
-                                Log.i("entity",entity.toString());
+                            for (EntityHeightWeight entity : list) {
+                                int age = (int) Duration.between(entity.date.toInstant(), User.getInstance().getChildDoB().toInstant()).toDays();
+                                weightDataList.add(new Entry(age, entity.weight));
+                                heightDataList.add(new Entry(age, entity.height));
+                                Log.i("age", String.valueOf(age));
+                                Log.i("entity", entity.toString());
                             }
                             LineDataSet weightDataSet = new LineDataSet(weightDataList, "Weight");
                             LineDataSet heightDataSet = new LineDataSet(heightDataList, "Height");
@@ -66,17 +67,7 @@ public class RecordWeightHeight extends Fragment {
                             weightChart.invalidate();
                             heightChart.invalidate();
                         }
-
-                        );
-
-        LineDataSet weightDataSet = new LineDataSet(weightDataList, "Weight");
-        LineDataSet heightDataSet = new LineDataSet(heightDataList, "Height");
-        LineData weightData = new LineData(weightDataSet);
-        LineData heightData = new LineData(heightDataSet);
-        weightChart.setData(weightData);
-        heightChart.setData(heightData);
-        weightChart.invalidate();
-        heightChart.invalidate();
+                );
 
         return view;
     }

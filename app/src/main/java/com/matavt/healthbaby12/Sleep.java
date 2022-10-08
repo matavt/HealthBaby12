@@ -20,7 +20,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class Sleep extends Fragment {
 
     private DatePickerDialog datePickerDialog;
-    private Button confirmButton, timePickerButton, datePickerButton;
+    private Button timePickerButton;
+    private Button datePickerButton;
     private TimePickerDialog timePickerDialog;
     private EditText eEndTime;
     private String endTime;
@@ -50,16 +51,15 @@ public class Sleep extends Fragment {
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
 
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
                 endTime = eEndTime.getText().toString();
-                StringBuilder sb = new StringBuilder();
-                sb.append(DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]));
-                sb.append(" : Sleep Started at ");
-                sb.append(DateFunctions.createStringFromTime(timeArray[0],timeArray[1]));
-                sb.append("and went for ").append(endTime).append(" hours.");
-                EntityActivity activity = new EntityActivity(sb.toString());
+                String activityString = DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]) +
+                        " : Sleep Started at " +
+                        DateFunctions.createStringFromTime(timeArray[0], timeArray[1]) +
+                        "and went for " + endTime + " hours.";
+                EntityActivity activity = new EntityActivity(activityString);
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

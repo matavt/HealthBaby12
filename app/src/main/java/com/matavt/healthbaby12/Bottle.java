@@ -21,7 +21,8 @@ public class Bottle extends Fragment {
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private Button confirmButton, datePickerButton, timePickerButton;
+    private Button datePickerButton;
+    private Button timePickerButton;
     private EditText eVolume;
     private String volume;
     private int[] dateArray, timeArray;
@@ -50,17 +51,16 @@ public class Bottle extends Fragment {
         datePickerButton.setOnClickListener(this::openDatePicker);
 
         timePickerButton=view.findViewById(R.id.timePickerButton);
-        timePickerButton.setText("08:00");
+        timePickerButton.setText(R.string.time);
         timePickerButton.setOnClickListener(this::openTimePicker);
 
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             volume = eVolume.getText().toString();
-            StringBuilder sb = new StringBuilder();
-            sb.append(DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]));
-            sb.append(" : Bottle Feed ").append(volume).append("mm at ");
-            sb.append(DateFunctions.createStringFromTime(timeArray[0],timeArray[1]));
-            EntityActivity activity = new EntityActivity(sb.toString());
+            String activityString = DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]) +
+                    " : Bottle Feed " + volume + "mm at " +
+                    DateFunctions.createStringFromTime(timeArray[0], timeArray[1]);
+            EntityActivity activity = new EntityActivity(activityString);
             MainMenu.hbDB.daoActivity().insertActivity(activity)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

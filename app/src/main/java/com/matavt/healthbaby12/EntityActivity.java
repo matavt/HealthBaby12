@@ -1,9 +1,8 @@
 package com.matavt.healthbaby12;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.Date;
 
 @Entity
 public class EntityActivity {
@@ -16,6 +15,7 @@ public class EntityActivity {
         this.record = record;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return id + ": " + this.record;

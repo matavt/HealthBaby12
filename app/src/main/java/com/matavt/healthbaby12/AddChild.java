@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
@@ -21,7 +20,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AddChild extends Fragment {
 
     private DatePickerDialog datePickerDialog;
-    private Button datePickerButton, confirmButton;
+    private Button datePickerButton;
     private EditText eName;
     private int[] dateArray;
 
@@ -44,7 +43,7 @@ public class AddChild extends Fragment {
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
         eName = view.findViewById(R.id.childName);
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             String name = eName.getText().toString();
             EntityChild child = new EntityChild(name, new Date(dateArray[0], dateArray[1],dateArray[2]));

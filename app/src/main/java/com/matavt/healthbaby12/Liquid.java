@@ -22,7 +22,8 @@ public class Liquid extends Fragment {
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private Button confirmButton, datePickerButton, timePickerButton;
+    private Button datePickerButton;
+    private Button timePickerButton;
     EditText eVolume, eDescription;
     String volume, description;
     private int[] dateArray, timeArray;
@@ -56,17 +57,16 @@ public class Liquid extends Fragment {
         eDescription = view.findViewById(R.id.description);
         eVolume = view.findViewById(R.id.volume);
 
-        confirmButton = view.findViewById(R.id.confirmButton);
+        Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
                 description = eDescription.getText().toString();
                 volume = eVolume.getText().toString();
-                StringBuilder sb = new StringBuilder();
-                sb.append(DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]));
-                sb.append(" : Consumed Liquid ").append(volume).append("mm at ");
-                sb.append(DateFunctions.createStringFromTime(timeArray[0],timeArray[1]));
-                sb.append(" liquid consumed was ").append(description);
-                EntityActivity activity = new EntityActivity(sb.toString());
+                String activityString = DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]) +
+                        " : Consumed Liquid " + volume + "mm at " +
+                        DateFunctions.createStringFromTime(timeArray[0], timeArray[1]) +
+                        " liquid consumed was " + description;
+                EntityActivity activity = new EntityActivity(activityString);
                 MainMenu.hbDB.daoActivity().insertActivity(activity)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

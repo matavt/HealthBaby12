@@ -14,9 +14,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MilestoneAdapter extends ArrayAdapter<String> {
-    Context context;
-    String mileStoneName[];
-    boolean checked[];
+    private final Context context;
+    private final String[] mileStoneName;
+    private final boolean[] checked;
 
 
     public MilestoneAdapter(Context context, String[] mileStoneName, boolean[] checked) {
@@ -29,7 +29,7 @@ public class MilestoneAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View singleMilestone = convertView;
-        MilestoneViewHolder milestoneViewHolder = null;
+        MilestoneViewHolder milestoneViewHolder;
         if(singleMilestone == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             singleMilestone = layoutInflater.inflate(R.layout.single_milstone, parent, false);

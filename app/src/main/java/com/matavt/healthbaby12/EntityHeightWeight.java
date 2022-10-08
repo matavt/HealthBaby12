@@ -1,10 +1,9 @@
 package com.matavt.healthbaby12;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,13 +21,12 @@ public class EntityHeightWeight {
         this.date = new Date(System.currentTimeMillis());
     }
 
+    @NonNull
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Date:").append(this.date);
-        sb.append("  Height:").append(this.height);
-        sb.append("  Weight:").append(this.weight);
-        return sb.toString();
+        return "Date:" + this.date +
+                "  Height:" + this.height +
+                "  Weight:" + this.weight;
     }
 
 }

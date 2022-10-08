@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GoogleSignin">
+    tools:context=".GoogleSignIn">
 
     <Button
-        android:id="@+id/google_signin"
+        android:id="@+id/google_sign_in"
         android:layout_width="264dp"
         android:layout_height="153dp"
         android:layout_marginStart="32dp"

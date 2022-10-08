@@ -1,12 +1,11 @@
 package com.matavt.healthbaby12;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LinkViewHolder {
-    TextView title;
-    TextView description;
+    public final TextView title;
+    public final TextView description;
 
     LinkViewHolder(View view) {
         title = view.findViewById(R.id.textTitle);

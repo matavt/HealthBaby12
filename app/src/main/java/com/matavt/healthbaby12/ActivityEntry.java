@@ -1,7 +1,6 @@
 package com.matavt.healthbaby12;
 import android.os.Bundle;
 
-import androidx.annotation.CheckResult;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ActivityEntry extends Fragment {
@@ -40,59 +40,30 @@ public class ActivityEntry extends Fragment {
         data = view.findViewById(R.id.activityData);
 
         bottleButton = (Button) view.findViewById(R.id.bottleButton);
-        bottleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Bottle());
-            }
-        });
+        bottleButton.setOnClickListener(view1 -> callFragment(new Bottle()));
         breastButton = (Button) view.findViewById(R.id.breastButton);
-        breastButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new BreastFeed());
-            }
-        });
+        breastButton.setOnClickListener(view12 -> callFragment(new BreastFeed()));
         foodButton = (Button) view.findViewById(R.id.foodButton);
-        foodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Food());
-            }
-        });
+        foodButton.setOnClickListener(view13 -> callFragment(new Food()));
         liquidButton = (Button) view.findViewById(R.id.liquidButton);
-        liquidButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Liquid());
-            }
-        });
+        liquidButton.setOnClickListener(view14 -> callFragment(new Liquid()));
         diaperButton = (Button) view.findViewById(R.id.diaperButton);
-        diaperButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Diaper());
-            }
-        });
+        diaperButton.setOnClickListener(view15 -> callFragment(new Diaper()));
         sleepButton = (Button) view.findViewById(R.id.sleepButton);
-        sleepButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(new Sleep());
-            }
-        });
+        sleepButton.setOnClickListener(view16 -> callFragment(new Sleep()));
 
-        MainMenu.hbDB.daoActivity().getAll()
+        final Disposable subscribe = MainMenu.hbDB.daoActivity().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
                             StringBuilder sb = new StringBuilder();
-                            for (EntityActivity entity: list) {
+                            for (EntityActivity entity : list) {
                                 sb.append(entity.toString()).append("\n");
                             }
                             data.setText(sb.toString());
                         });
+        subscribe.dispose();
         return view;
     }
 

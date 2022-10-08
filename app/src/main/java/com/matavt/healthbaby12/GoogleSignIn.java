@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-public class GoogleSignin extends AppCompatActivity {
+public class GoogleSignIn extends AppCompatActivity {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -25,13 +24,13 @@ public class GoogleSignin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_signin);
 
-        signInButton = findViewById(R.id.google_signin);
+        signInButton = findViewById(R.id.google_sign_in);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        gsc = GoogleSignIn.getClient(this,gso);
-        if(GoogleSignIn.getLastSignedInAccount(this) != null){
+        gsc = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(this,gso);
+        if(com.google.android.gms.auth.api.signin.GoogleSignIn.getLastSignedInAccount(this) != null){
             startMainMenu();
         }
 
@@ -47,7 +46,7 @@ public class GoogleSignin extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1000){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            Task<GoogleSignInAccount> task = com.google.android.gms.auth.api.signin.GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 task.getResult(ApiException.class);
                 startMainMenu();
@@ -61,7 +60,7 @@ public class GoogleSignin extends AppCompatActivity {
 
     void startMainMenu(){
         finish();
-        Intent intent = new Intent(GoogleSignin.this,MainMenu.class);
+        Intent intent = new Intent(GoogleSignIn.this,MainMenu.class);
         startActivity(intent);
     }
 }

@@ -12,13 +12,14 @@ import android.widget.ListView;
 import java.util.Arrays;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class Milestone extends Fragment {
 
-    ListView milestoneList;
-    String[] milestoneName = {
+    private ListView milestoneList;
+    private final String[] milestoneName = {
             "Pushes up on arms",
             "Lifts and holds head up",
             "Uses hands to support self while sitting",
@@ -32,7 +33,7 @@ public class Milestone extends Fragment {
             "Walks on own rarely falls",
             "Squats to pickup items"
     };
-    boolean checked[];
+    boolean[] checked;
 
 
     public Milestone() {
@@ -52,17 +53,17 @@ public class Milestone extends Fragment {
         milestoneList = view.findViewById(R.id.milestoneList);
         checked = new boolean[milestoneName.length];
 
-        MainMenu.hbDB.daoMilestone().getAll()
+        Disposable subscribe = MainMenu.hbDB.daoMilestone().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
                             Arrays.fill(checked, false);
-                            for (EntityMilestone entity: list) {
+                            for (EntityMilestone entity : list) {
                                 checked[entity.getId()] = entity.getAchieved();
                             }
                             MilestoneAdapter milestoneAdapter = new MilestoneAdapter(getContext(),
-                                    milestoneName,checked);
+                                    milestoneName, checked);
                             milestoneList.setAdapter(milestoneAdapter);
                         }
                 );
