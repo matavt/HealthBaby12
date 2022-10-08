@@ -18,7 +18,7 @@ public class ActivityEntry extends Fragment {
 
     FragmentManager fragMan;
     FragmentTransaction fragTran;
-    Button bottleButton, breastButton, foodButton, liquidButton, diaperButton,sleepButton;
+    Button bottleButton, breastButton, foodButton, liquidButton, diaperButton,sleepButton, clearButton;
     TextView data;
 
 
@@ -63,7 +63,16 @@ public class ActivityEntry extends Fragment {
                             }
                             data.setText(sb.toString());
                         });
-        subscribe.dispose();
+
+        clearButton = (Button) view.findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(view1 -> {
+            MainMenu.hbDB.daoActivity().deleteAllActivity()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
+        });
+
+
         return view;
     }
 

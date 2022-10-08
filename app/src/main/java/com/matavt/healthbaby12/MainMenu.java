@@ -17,7 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import java.text.MessageFormat;
@@ -125,8 +125,10 @@ public class MainMenu extends AppCompatActivity {
     }
 
     void loadReset(){
-
-        MainMenu.hbDB.clearAllTables();
+         Completable.fromAction(() -> hbDB.clearAllTables())
+                 .subscribeOn(Schedulers.io())
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe();
         signOutMethod();
 
     }
