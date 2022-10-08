@@ -18,7 +18,7 @@ public class EntityHeightWeight {
     public EntityHeightWeight(float weight, float height) {
         this.weight = weight;
         this.height = height;
-        this.date = new Date(System.currentTimeMillis());
+        this.date = new Date();
     }
 
     @NonNull
