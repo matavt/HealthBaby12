@@ -17,18 +17,18 @@ public class EntityHeightWeight {
     public GregorianCalendar calendar;
 
     public EntityHeightWeight(float weight, float height) {
+        GregorianCalendar cal = new GregorianCalendar();
         this.weight = weight;
         this.height = height;
-        this.calendar = new GregorianCalendar();
+        this.calendar = cal;
     }
 
     @NonNull
     @Override
     public String toString(){
         return "Date:" + DateFunctions.createStringFromDate(this.calendar.get(Calendar.YEAR),
-                this.calendar.get(Calendar.MONTH), this.calendar.get(Calendar.DAY_OF_MONTH)) +
+                this.calendar.get(Calendar.MONTH)+1, this.calendar.get(Calendar.DAY_OF_MONTH)) +
                 "  Height:" + this.height +
                 "  Weight:" + this.weight;
     }
-
 }
