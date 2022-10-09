@@ -18,10 +18,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import java.text.MessageFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class MainMenu extends AppCompatActivity {
@@ -47,13 +50,14 @@ public class MainMenu extends AppCompatActivity {
                 .build();
         gsc = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(this,gso);
 
-        GoogleSignInAccount account = com.google.android.gms.auth.api.signin.GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount account = com.google.android.gms.auth.api.signin.GoogleSignIn
+                .getLastSignedInAccount(this);
         if(account !=null) {
             User.getInstance().setUserName(account.getDisplayName());
             welcome.setText(MessageFormat.format("Welcome: {0}", User.getInstance().getUserName()));
         }
         childDetails = findViewById(R.id.ChildName);
-        hbDB.daoChild().getAll()
+        final Disposable child_frag = hbDB.daoChild().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -63,10 +67,12 @@ public class MainMenu extends AppCompatActivity {
                                 User.getInstance().setChildName(child.getName());
                                 User.getInstance().setChildDoB(child.getDate());
                                 childDetails.setClickable(false);
-                                Date childDob = child.getDate();
-                                String StringDate = DateFunctions.createStringFromDate(childDob.getYear(), childDob.getMonth(), childDob.getDay());
+                                GregorianCalendar childDob = child.getDate();
+                                String StringDate = DateFunctions.createStringFromDate(
+                                        childDob.get(Calendar.YEAR), childDob.get(Calendar.MONTH),
+                                        childDob.get(Calendar.DAY_OF_MONTH));
                                 childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
-                                getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG")).commit();
+                                getSupportFragmentManager().beginTransaction().remove(Objects.requireNonNull(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG"))).commit();
                             } catch (Exception e) {
                                 //do nothing.
                             }

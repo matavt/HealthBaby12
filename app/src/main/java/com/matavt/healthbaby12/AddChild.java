@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -46,7 +47,7 @@ public class AddChild extends Fragment {
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             String name = eName.getText().toString();
-            EntityChild child = new EntityChild(name, new Date(dateArray[0], dateArray[1],dateArray[2]));
+            EntityChild child = new EntityChild(name, new GregorianCalendar(dateArray[0], dateArray[1],dateArray[2]));
             MainMenu.hbDB.daoChild().insertChild(child)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

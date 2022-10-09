@@ -1,17 +1,18 @@
 package com.matavt.healthbaby12;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class User {
     private static User instance = null;
 
     private String userName, childName;
-    private Date childDoB;
+    private GregorianCalendar childDoB;
 
     private User() {
         userName ="";
         childName ="";
-        childDoB = new Date();
+        childDoB = new GregorianCalendar();
     }
 
     public static User getInstance(){
@@ -29,7 +30,7 @@ public class User {
         this.childName = childName;
     }
 
-    public void setChildDoB(Date childDoB) {
+    public void setChildDoB(GregorianCalendar childDoB) {
         this.childDoB = childDoB;
     }
 
@@ -41,7 +42,7 @@ public class User {
         return childName;
     }
 
-    public Date getChildDoB() {
+    public GregorianCalendar getChildDoB() {
         return childDoB;
     }
 }

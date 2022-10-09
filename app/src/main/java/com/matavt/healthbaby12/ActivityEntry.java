@@ -65,12 +65,10 @@ public class ActivityEntry extends Fragment {
                         });
 
         clearButton = (Button) view.findViewById(R.id.clearButton);
-        clearButton.setOnClickListener(view1 -> {
-            MainMenu.hbDB.daoActivity().deleteAllActivity()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe();
-        });
+        clearButton.setOnClickListener(view1 -> MainMenu.hbDB.daoActivity().deleteAllActivity()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe());
 
 
         return view;

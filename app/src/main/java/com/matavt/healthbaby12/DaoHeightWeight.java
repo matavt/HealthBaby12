@@ -18,5 +18,4 @@ public interface DaoHeightWeight {
 
     @Query("SELECT * from EntityHeightWeight")
     Flowable<List<EntityHeightWeight>> getAll();
-
 }

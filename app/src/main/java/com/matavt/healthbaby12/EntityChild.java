@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Entity
 public class EntityChild {
@@ -11,15 +12,15 @@ public class EntityChild {
     public int id;
 
     public String name;
-    public Date date;
+    public GregorianCalendar date;
 
-    public EntityChild(String name, Date date) {
+    public EntityChild(String name, GregorianCalendar date) {
         this.id = 1;
         this.name = name;
         this.date = date;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 

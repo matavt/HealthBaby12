@@ -11,5 +11,4 @@ public class LinkViewHolder {
         title = view.findViewById(R.id.textTitle);
         description = view.findViewById(R.id.textDescription);
     }
-
 }
