@@ -1,6 +1,9 @@
 package com.matavt.healthbaby12;
 
+import android.util.Log;
+
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class DateFunctions {
 
@@ -63,5 +66,17 @@ public class DateFunctions {
         String time;
         time = String.format("%02d:%02d",hour,minute);
         return time;
+    }
+
+    public static int calculateAgeInDays(GregorianCalendar birthday, GregorianCalendar date){
+        long age = 0;
+        long diff;
+        diff = date.getTimeInMillis() - birthday.getTimeInMillis();
+        age = (int)(diff/(1000*60*60*24));
+        Log.i("age", birthday.getTimeInMillis() + ":" + date.getTimeInMillis()
+                + " |calculateAgeInDays: " + diff +":" +age);
+        Log.i("BirthDate", birthday.toString());
+        Log.i("date", date.toString());
+        return (int)age;
     }
 }

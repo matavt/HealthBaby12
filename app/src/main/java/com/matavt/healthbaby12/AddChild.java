@@ -58,8 +58,7 @@ public class AddChild extends Fragment {
 
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
-            month = month + 1;
-            String dateString = DateFunctions.createStringFromDate(year, month, day);
+            String dateString = DateFunctions.createStringFromDate(year, month+1, day);
             datePickerButton.setText(dateString);
             dateArray = new int[]{year, month, day};
         };
