@@ -3,7 +3,10 @@ package com.matavt.healthbaby12;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Entity
 public class EntityMilestone {
@@ -11,33 +14,33 @@ public class EntityMilestone {
     public int id;
 
     public boolean achieved;
-    public Date date;
+    public GregorianCalendar calendar;
     public String description;
 
-    public EntityMilestone(int id, boolean achieved, Date date, String description) {
+    public EntityMilestone(int id, boolean achieved, GregorianCalendar calendar, String description) {
         this.id = id;
         this.achieved = achieved;
-        this.date = date;
+        this.calendar = calendar;
         this.description = description;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public Date getDate() {
-        return date;
+    public GregorianCalendar getDate() {
+        return this.calendar;
     }
 
     public boolean getAchieved() {
-        return achieved;
+        return this.achieved;
     }
 
     @NonNull
     @Override
     public String toString() {
-        String dateFormatted = DateFunctions.createStringFromDate(this.date.getYear()+1900,
-                this.date.getMonth() + 1, this.date.getDay());
+        String dateFormatted = DateFunctions.createStringFromDate(this.calendar.get(Calendar.YEAR),
+                this.calendar.get(Calendar.MONTH) + 1, this.calendar.get(Calendar.DAY_OF_MONTH));
         return description +
                 " achieved on " +
                 dateFormatted;

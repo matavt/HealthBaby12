@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -44,17 +45,15 @@ public class MilestoneAdapter extends ArrayAdapter<String> {
             milestoneViewHolder.checkBox.setEnabled(false);
         }
         milestoneViewHolder.checkBox.setOnClickListener(view -> {
-            Date date = new Date();
+            GregorianCalendar calendar = new GregorianCalendar();
             boolean check = ((CheckBox) view).isChecked();
-            EntityMilestone milestone = new EntityMilestone(position,check,date,mileStoneName[position]);
+            EntityMilestone milestone = new EntityMilestone(position,check,calendar,mileStoneName[position]);
             MainMenu.hbDB.daoMilestone().insertMilestone(milestone)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();
             Log.i("onclick", milestone.toString());
         });
-
         return singleMilestone;
-
     }
 }

@@ -3,7 +3,6 @@ package com.matavt.healthbaby12;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Entity
