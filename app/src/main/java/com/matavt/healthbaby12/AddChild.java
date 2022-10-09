@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

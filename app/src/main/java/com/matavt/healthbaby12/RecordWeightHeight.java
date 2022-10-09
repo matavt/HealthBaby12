@@ -52,7 +52,7 @@ public class RecordWeightHeight extends Fragment {
                 .subscribe(
                         list -> {
                             for (EntityHeightWeight entity : list) {
-                                int age = (int) Duration.between(entity.date.toInstant(), User.getInstance().getChildDoB().toInstant()).toDays();
+                                int age = (int) Duration.between(User.getInstance().getChildDoB().toInstant(),entity.calendar.toInstant()).toDays();
                                 weightDataList.add(new Entry(age, entity.weight));
                                 heightDataList.add(new Entry(age, entity.height));
                                 Log.i("age", String.valueOf(age));

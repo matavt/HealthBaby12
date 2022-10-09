@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 @Entity
 public class EntityHeightWeight {
@@ -13,18 +14,19 @@ public class EntityHeightWeight {
 
     public float weight;
     public float height;
-    public Date date;
+    public GregorianCalendar calendar;
 
     public EntityHeightWeight(float weight, float height) {
         this.weight = weight;
         this.height = height;
-        this.date = new Date();
+        this.calendar = new GregorianCalendar();
     }
 
     @NonNull
     @Override
     public String toString(){
-        return "Date:" + this.date +
+        return "Date:" + DateFunctions.createStringFromDate(this.calendar.get(Calendar.YEAR),
+                this.calendar.get(Calendar.MONTH), this.calendar.get(Calendar.DAY_OF_MONTH)) +
                 "  Height:" + this.height +
                 "  Weight:" + this.weight;
     }

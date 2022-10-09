@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

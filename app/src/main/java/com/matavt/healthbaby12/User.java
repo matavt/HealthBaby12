@@ -1,6 +1,5 @@
 package com.matavt.healthbaby12;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class User {

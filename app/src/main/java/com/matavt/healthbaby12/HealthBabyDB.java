@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 
 @Database(entities = {EntityHeightWeight.class, EntityActivity.class,
         EntityMilestone.class, EntityChild.class}
-        , exportSchema = false, version = 20)
+        , exportSchema = false, version = 22)
 @TypeConverters({Converters.class})
 public abstract class HealthBabyDB extends RoomDatabase {
     private static final String DB_NAME = "health_baby_db";
