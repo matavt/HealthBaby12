@@ -39,17 +39,17 @@ public class ActivityEntry extends Fragment {
 
         data = view.findViewById(R.id.activityData);
 
-        bottleButton = (Button) view.findViewById(R.id.bottleButton);
+        bottleButton = view.findViewById(R.id.bottleButton);
         bottleButton.setOnClickListener(view1 -> callFragment(new Bottle()));
-        breastButton = (Button) view.findViewById(R.id.breastButton);
+        breastButton = view.findViewById(R.id.breastButton);
         breastButton.setOnClickListener(view12 -> callFragment(new BreastFeed()));
-        foodButton = (Button) view.findViewById(R.id.foodButton);
+        foodButton = view.findViewById(R.id.foodButton);
         foodButton.setOnClickListener(view13 -> callFragment(new Food()));
-        liquidButton = (Button) view.findViewById(R.id.liquidButton);
+        liquidButton = view.findViewById(R.id.liquidButton);
         liquidButton.setOnClickListener(view14 -> callFragment(new Liquid()));
-        diaperButton = (Button) view.findViewById(R.id.diaperButton);
+        diaperButton = view.findViewById(R.id.diaperButton);
         diaperButton.setOnClickListener(view15 -> callFragment(new Diaper()));
-        sleepButton = (Button) view.findViewById(R.id.sleepButton);
+        sleepButton = view.findViewById(R.id.sleepButton);
         sleepButton.setOnClickListener(view16 -> callFragment(new Sleep()));
 
         final Disposable subscribe = MainMenu.hbDB.daoActivity().getAll()
@@ -64,7 +64,7 @@ public class ActivityEntry extends Fragment {
                             data.setText(singleData);
                         });
 
-        clearButton = (Button) view.findViewById(R.id.clearButton);
+        clearButton = view.findViewById(R.id.clearButton);
         clearButton.setOnClickListener(view1 -> MainMenu.hbDB.daoActivity().deleteAllActivity()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
