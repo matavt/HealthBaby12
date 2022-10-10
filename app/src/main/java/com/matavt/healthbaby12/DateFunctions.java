@@ -79,4 +79,17 @@ public class DateFunctions {
         Log.i("date", date.toString());
         return (int)age;
     }
+
+    //this actually calculates in 4 weeks blocks but that is all we need for the chart.
+    public static float calculateAgeInMoths(GregorianCalendar birthday, GregorianCalendar date){
+        float age = 0;
+        long diff;
+        diff = date.getTimeInMillis() - birthday.getTimeInMillis();
+        age = (int)(diff/(1000*60*60*24*28));
+        Log.i("age", birthday.getTimeInMillis() + ":" + date.getTimeInMillis()
+                + " |calculateAgeInDays: " + diff +":" +age);
+        Log.i("BirthDate", birthday.toString());
+        Log.i("date", date.toString());
+        return age;
+    }
 }
