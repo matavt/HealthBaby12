@@ -60,7 +60,7 @@ public class HeightWeight extends Fragment {
                 weight = Float.parseFloat(sWeight);
                 sHeight = eHeight.getText().toString();
                 height = Float.parseFloat(sHeight);
-                EntityHeightWeight heightWeight = new EntityHeightWeight(height, weight);
+                EntityHeightWeight heightWeight = new EntityHeightWeight(weight, height);
                 MainMenu.hbDB.daoHeightWeight().insertHeightWeight(heightWeight)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
