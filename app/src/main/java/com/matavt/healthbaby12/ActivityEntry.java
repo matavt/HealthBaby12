@@ -57,11 +57,11 @@ public class ActivityEntry extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
-                            StringBuilder sb = new StringBuilder();
+                            String singleData = "";
                             for (EntityActivity entity : list) {
-                                sb.append(entity.toString()).append("\n");
+                                singleData = entity.toString() + "\n" + singleData;
                             }
-                            data.setText(sb.toString());
+                            data.setText(singleData);
                         });
 
         clearButton = (Button) view.findViewById(R.id.clearButton);

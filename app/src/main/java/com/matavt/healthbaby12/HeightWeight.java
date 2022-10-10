@@ -45,11 +45,12 @@ public class HeightWeight extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
+                            String singleData = "";
                             StringBuilder sb = new StringBuilder();
                             for (EntityHeightWeight entity : list) {
-                                sb.append(entity.toString()).append("\n");
+                                singleData = entity.toString() + "\n" + singleData;
                             }
-                            data.setText(sb.toString());
+                            data.setText(singleData);
                         }
                 );
 
