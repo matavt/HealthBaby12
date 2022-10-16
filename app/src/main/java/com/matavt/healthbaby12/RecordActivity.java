@@ -1,3 +1,8 @@
+/*
+Child fragment of Records this displays the recorded activities and allows them to be emailed
+to a health profession as needed.
+ */
+
 package com.matavt.healthbaby12;
 
 import android.content.Intent;
@@ -41,6 +46,7 @@ public class RecordActivity extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_activity, container, false);
         data = view.findViewById(R.id.recordText);
+        //Retrieve data from the RoomdB
         final Disposable subscribe = MainMenu.hbDB.daoActivity().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,8 +60,12 @@ public class RecordActivity extends Fragment {
                             data.setText(dataString);
                         });
 
+
         sendButton = view.findViewById(R.id.sendButton);
         sendButton.setOnClickListener(view1 -> {
+
+            //Create the file for sending we use Cache as we don't need this file to stick around
+            //beyond the sending of the email
             String fileName = User.getInstance().getChildName() + "_activities.txt";
             File file = new File(getContext().getCacheDir(), fileName);
             try {
@@ -66,18 +76,23 @@ public class RecordActivity extends Fragment {
                 e.printStackTrace();
             }
 
+            //Prepare the email message
             String subject = User.getInstance().getChildName() + " Activity file";
-            String message = "Please see attached file containing a record of activities for " + User.getInstance().getChildName();
+            String message = "Please see attached file containing a record of activities for "
+                    + User.getInstance().getChildName();
             message = message + "\n regards \n" + User.getInstance().getUserName();
 
+            //Build the intent to send the data to another app.
             final Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("plain/text");
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
             emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-            emailIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(getActivity(),"com.matavt.healthbaby12.fileProvider",file));
+            //We have configured a fileProvider to allow the file to passed outside the app
+            emailIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(getActivity(),
+                    "com.matavt.healthbaby12.fileProvider",file));
 
+            //prompts to send the email with their choice of email app.
             startActivity(emailIntent);
-
         });
 
         return view;

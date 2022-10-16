@@ -1,3 +1,7 @@
+/*
+Fragment that displays weblinks this is inflated into a fragment frame in the MainMenu Activity
+ */
+
 package com.matavt.healthbaby12;
 
 import android.os.Bundle;
@@ -13,6 +17,7 @@ public class Links extends Fragment {
 
     ListView linksList;
 
+    //Data that forms the basis of the URL list
     private final String[] urls = {
             "https://www.pregnancybirthbaby.org.au/",
             "https://www.breastfeeding.asn.au/",
@@ -62,6 +67,7 @@ public class Links extends Fragment {
         View view = inflater.inflate(R.layout.fragment_links, container, false);
 
         linksList = view.findViewById(R.id.linksList);
+        //LinksAdapter is an implementation of the ArrayAdapter  used to populate the ListView
         LinksAdapter linksAdapter = new LinksAdapter(getContext(), titles, description, urls);
         linksList.setAdapter(linksAdapter);
 

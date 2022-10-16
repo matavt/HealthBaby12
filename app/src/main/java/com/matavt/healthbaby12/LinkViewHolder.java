@@ -1,3 +1,4 @@
+//Holds a single view from the LinksAdapter
 package com.matavt.healthbaby12;
 
 import android.view.View;

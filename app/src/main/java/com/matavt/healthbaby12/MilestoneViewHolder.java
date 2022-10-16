@@ -1,3 +1,4 @@
+//Holds a single milestone view.
 package com.matavt.healthbaby12;
 
 import android.view.View;

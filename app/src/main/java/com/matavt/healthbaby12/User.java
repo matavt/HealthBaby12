@@ -1,3 +1,5 @@
+//Singleton to store our user information for use throughout the app.
+
 package com.matavt.healthbaby12;
 
 import java.util.GregorianCalendar;

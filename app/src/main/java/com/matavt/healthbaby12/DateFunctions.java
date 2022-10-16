@@ -1,3 +1,5 @@
+//Functions to support date handling.
+
 package com.matavt.healthbaby12;
 
 import android.util.Log;
@@ -7,6 +9,8 @@ import java.util.GregorianCalendar;
 
 public class DateFunctions {
 
+    //Not this function assumes the month has a value of 1-12 this may require passing month+1 when
+    //dealing with Calendar objects.
     public static String createStringFromDate(int year, int month, int day) {
         String monthString;
         switch(month) {
@@ -53,6 +57,7 @@ public class DateFunctions {
         return monthString + " " + day + " " + year;
     }
 
+    //returns today's date as a formated string
     public static String getTodaysDate(){
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -62,22 +67,19 @@ public class DateFunctions {
         return createStringFromDate(year, month, day);
     }
 
+    //formats a time for display
     public static String createStringFromTime(int hour, int minute){
         String time;
         time = String.format("%02d:%02d",hour,minute);
         return time;
     }
 
-    //this actually calculates in 4 weeks blocks but that is all we need for the chart.
+    //this calculate age in 4 weeks blocks.
     public static float calculateAgeInMoths(GregorianCalendar birthday, GregorianCalendar date){
         float age;
         long diff;
         diff = date.getTimeInMillis() - birthday.getTimeInMillis();
-        age = (int)((diff/(1000*60*60))/(24*28));
-        Log.i("age", birthday.getTimeInMillis() + ":" + date.getTimeInMillis()
-                + " |calculateAgeInDays: " + diff +":" +age);
-        Log.i("BirthDate", birthday.toString());
-        Log.i("date", date.toString());
+        age = (int)((diff/(1000*60*60))/(24*28)); //value are split to avoid integer overflow.
         return age;
     }
 }

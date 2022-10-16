@@ -1,3 +1,6 @@
+/* Inflated as a child fragment of ActivityEntry
+   Enables the entry of a liquid feeding.
+*/
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -40,10 +43,10 @@ public class Sleep extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sleep, container, false);
+
+        //setup date and time picker dialogs defaulted to 8am of today's date.
         initTimePicker();
         initDatePicker();
-
-        eEndTime = view.findViewById(R.id.endTime);
         timePickerButton = view.findViewById(R.id.startTimePickerButton);
         timePickerButton.setText("08:00");
         timePickerButton.setOnClickListener(this::openTimePicker);
@@ -51,6 +54,10 @@ public class Sleep extends Fragment {
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
 
+        eEndTime = view.findViewById(R.id.endTime);
+
+        //OnClick of confirmation button the entered information in read and formatted
+        //then written to the RoomDB and this fragment is then removed.
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
@@ -73,6 +80,7 @@ public class Sleep extends Fragment {
         return view;
     }
 
+    //Setup functions for the date and time pickers
 
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
@@ -81,7 +89,6 @@ public class Sleep extends Fragment {
             datePickerButton.setText(dateString);
             dateArray = new int[]{year, month, day};
         };
-
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);        int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -91,7 +98,6 @@ public class Sleep extends Fragment {
     public void openDatePicker(View view){
         datePickerDialog.show();
     }
-
 
     private void initTimePicker(){
         TimePickerDialog.OnTimeSetListener timeSetListener = (timePicker, hour, minute) -> {

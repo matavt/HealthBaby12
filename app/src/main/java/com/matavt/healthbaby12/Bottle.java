@@ -76,7 +76,6 @@ public class Bottle extends Fragment {
         return view;
     }
 
-
     //Setup functions for the date and time pickers
 
     private void initDatePicker(){

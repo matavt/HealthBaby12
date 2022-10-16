@@ -1,3 +1,9 @@
+/*First fragment to load into the MainMenu Activity.
+
+It provides the main menu to allow the user to select a task.
+It is replaced by the fragment for the select task.
+ */
+
 package com.matavt.healthbaby12;
 
 import android.os.Bundle;
@@ -44,6 +50,7 @@ public class Home extends Fragment {
         return view;
     }
 
+    //method to load the fragment
     void callFragment(Fragment fragment){
         fragMan = getParentFragmentManager();
         fragTran = fragMan.beginTransaction();

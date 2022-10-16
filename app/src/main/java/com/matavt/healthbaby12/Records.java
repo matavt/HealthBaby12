@@ -1,3 +1,7 @@
+/*
+Fragment to allow the user to select what recorded data they want to view.
+Each child fragment is loaded into the fragment on selection of the corresponding button
+ */
 package com.matavt.healthbaby12;
 
 import android.os.Bundle;

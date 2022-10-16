@@ -1,3 +1,11 @@
+/*
+Child fragment of records to display height and weight information
+Utilises the MPAndroidChart library
+https://github.com/PhilJay/MPAndroidChart
+Copyright 2020 Philipp Jahoda
+Licensed under the Apache License, Version 2.0 (the "License");
+ */
+
 package com.matavt.healthbaby12;
 
 import android.graphics.Color;
@@ -27,8 +35,9 @@ public class RecordWeightHeight extends Fragment {
     List<Entry> weightDataList,weight5DataList,weight25DataList,weight50DataList,weight75DataList, weight95DataList;
     List<Entry> heightDataList,height5DataList,height25DataList,height50DataList,height75DataList, height95DataList;
 
+    //Data from https://www.who.int/tools/child-growth-standards/standards for display with recorded
+    //Height and Weight values.
     final int[] ageMonths = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
-
     final double[] weight5 = {2.6,3.6,4.5,5.2,5.8,6.2,6.6,6.9,7.2,7.4,7.7,7.9,8.1,8.2,8.4,8.6,8.8,8.9,9.1,
             9.3,9.4,9.6,9.8,9.9,10.1};
     final double[] weight25 = {3,4.1,5.1,5.9,6.5,7,7.4,7.7,8,8.3,8.5,8.7,9,9.2,9.4,9.6,9.8,10,10.1,10.3,
@@ -81,6 +90,7 @@ public class RecordWeightHeight extends Fragment {
         height75DataList = new ArrayList<>();
         height95DataList = new ArrayList<>();
 
+        //Load the data into the List<Entry> for use in the chart
         for (int i = 0; i < ageMonths.length; i++) {
             weight5DataList.add(new Entry(ageMonths[i], (float) weight5[i]));
             weight25DataList.add(new Entry(ageMonths[i], (float) weight25[i]));
@@ -95,11 +105,13 @@ public class RecordWeightHeight extends Fragment {
             height95DataList.add(new Entry(ageMonths[i], (float) height95[i]));
         }
 
+        //As were dealing with data from room we can't use the main thread or risk UI lockup.
         Disposable subscribe = MainMenu.hbDB.daoHeightWeight().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
+                            //Retrieve the data and set to the List<Entity>
                             for (EntityHeightWeight entity : list) {
                                 float age = DateFunctions.calculateAgeInMoths(User.getInstance()
                                                 .getChildDoB(), entity.calendar);
@@ -109,6 +121,7 @@ public class RecordWeightHeight extends Fragment {
                                 Log.i("entity", entity.toString());
                             }
 
+                            //Build each weight dataset for display
                             LineDataSet weight5DataSet = new LineDataSet(weight5DataList,"5%");
                             weight5DataSet.setColor(Color.BLUE);
                             weight5DataSet.setDrawCircles(false);
@@ -137,12 +150,13 @@ public class RecordWeightHeight extends Fragment {
                             LineDataSet weightDataSet = new LineDataSet(weightDataList, "Weight");
                             weightDataSet.setColor(Color.BLACK);
 
+                            //Display the Weight Chart
                             LineData weightData = new LineData(weightDataSet,weight5DataSet,
                                     weight25DataSet,weight50DataSet,weight75DataSet,weight95DataSet);
                             weightChart.setData(weightData);
                             weightChart.invalidate();
 
-
+                            //Build each Height dataset for display
                             LineDataSet height5DataSet = new LineDataSet(height5DataList,"5%");
                             height5DataSet.setColor(Color.BLUE);
                             height5DataSet.setDrawCircles(false);
@@ -171,11 +185,11 @@ public class RecordWeightHeight extends Fragment {
                             LineDataSet heightDataSet = new LineDataSet(heightDataList, "height");
                             heightDataSet.setColor(Color.BLACK);
 
+                            //Display the Height Chart.
                             LineData heightData = new LineData(heightDataSet,height5DataSet,
                                     height25DataSet,height50DataSet,height75DataSet,height95DataSet);
                             heightChart.setData(heightData);
                             heightChart.invalidate();
-
                         }
                 );
         return view;

@@ -1,3 +1,11 @@
+/*Main Fragment for recording a child's height and weight this is inflated in the the
+fragment frame of the MainMenu activity.
+
+Date of the record is today's date.
+
+Details are then save to the Room database instance.
+ */
+
 package com.matavt.healthbaby12;
 
 import android.os.Bundle;
@@ -40,6 +48,8 @@ public class HeightWeight extends Fragment {
         eWeight = view.findViewById(R.id.weightTextInput);
         eHeight = view.findViewById(R.id.heightTextInput);
         data = view.findViewById(R.id.weightHeightData);
+
+        //Retrieve existing records from room on a Thread from Schedulers IO
         final Disposable subscribe = MainMenu.hbDB.daoHeightWeight().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,6 +64,7 @@ public class HeightWeight extends Fragment {
                         }
                 );
 
+        //Write the supplied information into the RoomDB
         confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {

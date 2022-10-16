@@ -1,3 +1,7 @@
+/* Inflated as a child fragment of ActivityEntry
+   Enables the entry of a liquid feeding.
+*/
+
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -43,13 +47,13 @@ public class Liquid extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_liquid, container, false);
+
+        //setup date and time picker dialogs defaulted to 8am of today's date.
         initDatePicker();
         initTimePicker();
-
         datePickerButton=view.findViewById(R.id.datePickerButton);
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
-
         timePickerButton=view.findViewById(R.id.timePickerButton);
         timePickerButton.setText("08:00");
         timePickerButton.setOnClickListener(this::openTimePicker);
@@ -57,6 +61,8 @@ public class Liquid extends Fragment {
         eDescription = view.findViewById(R.id.description);
         eVolume = view.findViewById(R.id.volume);
 
+        //OnClick of confirmation button the entered information in read and formatted
+        //then written to the RoomDB and this fragment is then removed.
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
@@ -78,6 +84,8 @@ public class Liquid extends Fragment {
         });
         return view;
     }
+
+    //Setup functions for the date and time pickers
 
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {

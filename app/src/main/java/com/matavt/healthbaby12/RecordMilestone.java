@@ -1,3 +1,7 @@
+/*
+Child fragment of Records this displays the recorded achieved milestones with date of achievement.
+ */
+
 package com.matavt.healthbaby12;
 
 import android.os.Bundle;
@@ -28,6 +32,7 @@ public class RecordMilestone extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_milestone, container, false);
         TextView data = view.findViewById(R.id.recordMilestoneList);
+        //Load and display information from the RoomDB
         final Disposable subscribe = MainMenu.hbDB.daoMilestone().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

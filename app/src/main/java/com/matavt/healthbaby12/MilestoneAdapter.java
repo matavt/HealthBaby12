@@ -30,6 +30,7 @@ public class MilestoneAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View singleMilestone = convertView;
         MilestoneViewHolder milestoneViewHolder;
+        //We don't need to inflate a view that is already inflated.
         if(singleMilestone == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             singleMilestone = layoutInflater.inflate(R.layout.single_milstone, parent, false);
@@ -43,6 +44,9 @@ public class MilestoneAdapter extends ArrayAdapter<String> {
         if(checked[position]){
             milestoneViewHolder.checkBox.setEnabled(false);
         }
+        //As a milestone is checked off the entry in the RoomDB is updated with the milestone details
+        // and today's date.
+        //Milestones are only written to the DB as they are checked off.
         milestoneViewHolder.checkBox.setOnClickListener(view -> {
             GregorianCalendar calendar = new GregorianCalendar();
             boolean check = ((CheckBox) view).isChecked();
@@ -51,7 +55,6 @@ public class MilestoneAdapter extends ArrayAdapter<String> {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();
-            Log.i("onclick", milestone.toString());
         });
         return singleMilestone;
     }

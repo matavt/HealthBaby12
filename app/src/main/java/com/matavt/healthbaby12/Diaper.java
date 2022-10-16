@@ -1,3 +1,7 @@
+/* Inflated as a child fragment of ActivityEntry
+   Enables the entry of a diaper change.
+*/
+
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -39,23 +43,24 @@ public class Diaper extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diaper, container, false);
+
+        //setup date and time picker dialogs defaulted to 8am of today's date.
         initDatePicker();
         initTimePicker();
+        datePickerButton=view.findViewById(R.id.datePickerButton);
+        datePickerButton.setText(DateFunctions.getTodaysDate());
+        datePickerButton.setOnClickListener(this::openDatePicker);
+        timePickerButton=view.findViewById(R.id.timePickerButton);
+        timePickerButton.setText(R.string.time);
+        timePickerButton.setOnClickListener(this::openTimePicker);
 
         dirty = view.findViewById(R.id.radio_group_diaper);
         weight = view.findViewById(R.id.radio_group_full);
 
-        datePickerButton=view.findViewById(R.id.datePickerButton);
-        datePickerButton.setText(DateFunctions.getTodaysDate());
-        datePickerButton.setOnClickListener(this::openDatePicker);
-
-        timePickerButton=view.findViewById(R.id.timePickerButton);
-        timePickerButton.setText("08:00");
-        timePickerButton.setOnClickListener(this::openTimePicker);
-
+        //OnClick of confirmation button the entered information in read and formatted
+        //then written to the RoomDB and this fragment is then removed.
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
-
             try {
                 StringBuilder sb = new StringBuilder();
                 sb.append(DateFunctions.createStringFromDate(dateArray[0], dateArray[1], dateArray[2]));
@@ -71,7 +76,6 @@ public class Diaper extends Fragment {
                         sb.append("Heavy ");
                         break;
                 }
-
                 switch(dirty.getCheckedRadioButtonId()) {
                     case R.id.radio_wet:
                         sb.append("Wet Diaper changed at ");
@@ -95,6 +99,8 @@ public class Diaper extends Fragment {
 
         return view;
     }
+
+    //Setup functions for the date and time pickers
 
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {

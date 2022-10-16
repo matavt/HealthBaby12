@@ -1,3 +1,9 @@
+/*
+The storage entity for Activities for the Room Db. @Entity annotation flags the member variables
+as values to be stored in this entities table.
+toString overwritten to be used for information display
+ */
+
 package com.matavt.healthbaby12;
 
 import androidx.room.Entity;
