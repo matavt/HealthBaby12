@@ -1,3 +1,8 @@
+/*
+This fragment is displayed in the childFrame fragment frame of the MainActivity only if a child
+hasn't previously been created.
+ */
+
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -38,12 +43,16 @@ public class AddChild extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_child, container, false);
 
+        //Build the dataPicker dialog and set it to display today's date by default
         initDatePicker();
         datePickerButton = view.findViewById(R.id.datePickerButton);
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
+
         eName = view.findViewById(R.id.childName);
         Button confirmButton = view.findViewById(R.id.confirmButton);
+
+        //on confirmation write the child's information to the room DB instance
         confirmButton.setOnClickListener(view1 -> {
             String name = eName.getText().toString();
             EntityChild child = new EntityChild(name, new GregorianCalendar(dateArray[0], dateArray[1],dateArray[2]));
@@ -52,10 +61,11 @@ public class AddChild extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe();
         });
-
         return view;
     }
 
+    //Setups the DatePicker dialog the date is written to the dataArray.
+    //The dialog is set to display today's date.
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
             String dateString = DateFunctions.createStringFromDate(year, month+1, day);

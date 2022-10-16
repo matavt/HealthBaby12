@@ -1,3 +1,12 @@
+/*Main Fragment for recording activities this is inflated in the the fragment frame of the
+MainMenu activity.
+
+Loads a fragment for each activity type in the it own fragment frame to allow entry of that
+activities details.
+Details are then save to the Room database instance.
+ */
+
+
 package com.matavt.healthbaby12;
 import android.os.Bundle;
 
@@ -35,10 +44,13 @@ public class ActivityEntry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //inflate the view
         View view = inflater.inflate(R.layout.fragment_activity_entry, container, false);
 
-        data = view.findViewById(R.id.activityData);
 
+        data = view.findViewById(R.id.activityData);//this textview displays recorded data.
+
+        //Create is button and set them to call a function to inflate the child fragments.
         bottleButton = view.findViewById(R.id.bottleButton);
         bottleButton.setOnClickListener(view1 -> callFragment(new Bottle()));
         breastButton = view.findViewById(R.id.breastButton);
@@ -52,6 +64,9 @@ public class ActivityEntry extends Fragment {
         sleepButton = view.findViewById(R.id.sleepButton);
         sleepButton.setOnClickListener(view16 -> callFragment(new Sleep()));
 
+
+        //Subscribe to the Flowable returned by DAO using the io scheduler this will continuously
+        //update the textview as new data is added.
         final Disposable subscribe = MainMenu.hbDB.daoActivity().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -64,13 +79,13 @@ public class ActivityEntry extends Fragment {
                             data.setText(singleData);
                         });
 
+        //Setup clear activities button. The call to the Doa is carried out on the thread from the
+        //io scheduler to prevent UI lockup.
         clearButton = view.findViewById(R.id.clearButton);
         clearButton.setOnClickListener(view1 -> MainMenu.hbDB.daoActivity().deleteAllActivity()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe());
-
-
         return view;
     }
 

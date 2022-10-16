@@ -68,7 +68,7 @@ public class MainMenu extends AppCompatActivity {
                                 childDetails.setClickable(false);
                                 GregorianCalendar childDob = child.getDate();
                                 String StringDate = DateFunctions.createStringFromDate(
-                                        childDob.get(Calendar.YEAR), childDob.get(Calendar.MONTH),
+                                        childDob.get(Calendar.YEAR), childDob.get(Calendar.MONTH) + 1,
                                         childDob.get(Calendar.DAY_OF_MONTH));
                                 childDetails.setText(String.format("%s Born: %s", child.getName(), StringDate));
                                 getSupportFragmentManager().beginTransaction().remove(Objects.requireNonNull(getSupportFragmentManager().findFragmentByTag("CHILD_FRAG"))).commit();
@@ -76,7 +76,6 @@ public class MainMenu extends AppCompatActivity {
                                 //do nothing.
                             }
                         });
-
         loadHomeMenu();
     }
 

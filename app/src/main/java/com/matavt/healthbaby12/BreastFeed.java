@@ -1,3 +1,6 @@
+/* Inflated as a child fragment of ActivityEntry
+   Enables the entry of a breast feeding.
+*/
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -40,11 +43,10 @@ public class BreastFeed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_breast_feed, container, false);
+
+        //setup date and time picker dialogs defaulted to 8am of today's date.
         initTimePicker();
         initDatePicker();
-
-        eEndTime = view.findViewById(R.id.endTime);
-        eBreast = view.findViewById(R.id.breastInput);
         timePickerButton = view.findViewById(R.id.startTimePickerButton);
         timePickerButton.setText(R.string.time);
         timePickerButton.setOnClickListener(this::openTimePicker);
@@ -52,6 +54,11 @@ public class BreastFeed extends Fragment {
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
 
+        eEndTime = view.findViewById(R.id.endTime);
+        eBreast = view.findViewById(R.id.breastInput);
+
+        //OnClick of confirmation button the entered information in read and formatted
+        //then written to the RoomDB and this fragment is then removed.
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             try {
@@ -82,9 +89,10 @@ public class BreastFeed extends Fragment {
         return view;
     }
 
+    //Setup functions for the date and time pickers
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
-            month = month + 1;
+            month = month + 1;//We're not storing the date as a Object we +1 to the month for string conversion.
             String dateString = DateFunctions.createStringFromDate(year, month, day);
             datePickerButton.setText(dateString);
             dateArray = new int[]{year, month, day};

@@ -1,3 +1,8 @@
+/*
+Data Access Object(DAO) for interacting with Child Entities in Room DB.
+This is an interface with SQL type queries forming part of the annotation.
+Implementation is handled by RoomDB framework as part of the build.
+ */
 package com.matavt.healthbaby12;
 
 import androidx.room.Dao;

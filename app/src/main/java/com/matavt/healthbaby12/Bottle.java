@@ -1,3 +1,7 @@
+/* Inflated as a child fragment of ActivityEntry
+   Enables the entry of a bottle feeding.
+*/
+
 package com.matavt.healthbaby12;
 
 import android.app.DatePickerDialog;
@@ -11,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import java.util.Calendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -42,18 +45,21 @@ public class Bottle extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bottle, container, false);
+
+        //setup date and time picker dialogs defaulted to 8am of today's date.
         initDatePicker();
         initTimePicker();
-
-        eVolume = view.findViewById(R.id.volume);
         datePickerButton=view.findViewById(R.id.datePickerButton);
         datePickerButton.setText(DateFunctions.getTodaysDate());
         datePickerButton.setOnClickListener(this::openDatePicker);
-
         timePickerButton=view.findViewById(R.id.timePickerButton);
         timePickerButton.setText(R.string.time);
         timePickerButton.setOnClickListener(this::openTimePicker);
 
+        eVolume = view.findViewById(R.id.volume);
+
+        //OnClick of confirmation button the entered information in read and formatted
+        //then written to the RoomDB and this fragment is then removed.
         Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(view1 -> {
             volume = eVolume.getText().toString();
@@ -70,14 +76,16 @@ public class Bottle extends Fragment {
         return view;
     }
 
+
+    //Setup functions for the date and time pickers
+
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
-            month = month + 1;
+            month = month + 1;//We're not storing the date as a Object we +1 to the month for string conversion.
             String dateString = DateFunctions.createStringFromDate(year, month, day);
             datePickerButton.setText(dateString);
             dateArray = new int[]{year, month, day};
         };
-
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
