@@ -46,7 +46,7 @@ public class RecordActivity extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_activity, container, false);
         data = view.findViewById(R.id.recordText);
-        //Retrieve data from the RoomdB
+        //Retrieve data from the RoomDB
         final Disposable subscribe = MainMenu.hbDB.daoActivity().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,7 +94,6 @@ public class RecordActivity extends Fragment {
             //prompts to send the email with their choice of email app.
             startActivity(emailIntent);
         });
-
         return view;
     }
 }

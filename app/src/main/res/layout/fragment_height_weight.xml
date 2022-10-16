@@ -46,7 +46,7 @@
         android:textSize="18sp"
         android:layout_marginTop="24sp"
         android:layout_marginStart="12sp"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         />
 
     <EditText
@@ -75,23 +75,10 @@
         android:inputType="numberDecimal"
         />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/heightTextInput"
-        android:text="@string/reset"
-        android:textSize="18sp"
-        android:layout_marginTop="24sp"
-        android:layout_marginEnd="12sp"
-        android:layout_alignParentEnd="true"
-        />
-
     <TextView
         android:id="@+id/weightHeightData"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/homeButton"
         android:layout_below="@id/confirmButton"
         android:layout_marginStart="12sp"
         android:layout_marginTop="24sp"
@@ -99,23 +86,4 @@
         android:layout_marginBottom="24sp"
         android:textSize="12sp"
         android:text=""/>
-
-
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/reset"
-        android:textSize="18sp"
-        android:layout_marginTop="24sp"
-        android:layout_marginStart="12sp"
-        android:layout_marginEnd="12sp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        />
-
-
-
-
-
 </RelativeLayout>
