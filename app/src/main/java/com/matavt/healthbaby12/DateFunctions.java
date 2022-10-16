@@ -2,8 +2,6 @@
 
 package com.matavt.healthbaby12;
 
-import android.util.Log;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
